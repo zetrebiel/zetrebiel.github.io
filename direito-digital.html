@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel Willians — Advogado Especialista em Direito Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0a0a0f;
+    --ivory: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --crimson: #8b1a1a;
+    --slate: #1c1c2e;
+    --mid: #3a3a5c;
+    --ghost: rgba(201,168,76,0.08);
+    --line: rgba(201,168,76,0.18);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: var(--ivory);
+    overflow-x: hidden;
+    }
+
+  
+
+  /* Noise overlay */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9990;
+    opacity: 0.35;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 24px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid transparent;
+    transition: all 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom-color: var(--line);
+    padding: 16px 60px;
+  }
+  .logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .logo span { color: var(--ivory); }
+  nav ul { list-style: none; display: flex; gap: 40px; }
+  nav a {
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(245,240,232,0.55); text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 500;
+  }
+  nav a:hover { color: var(--gold); }
+  .nav-cta {
+    background: transparent !important;
+    border: 1px solid var(--gold) !important;
+    padding: 10px 22px !important;
+    color: var(--gold) !important;
+    transition: all 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--gold) !important; color: var(--ink) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139,26,26,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 60%);
+  }
+
+  .hero-lines {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  }
+  .hero-lines::before {
+    content: '';
+    position: absolute;
+    top: -10%; left: 55%;
+    width: 1px; height: 120%;
+    background: linear-gradient(to bottom, transparent, var(--line), transparent);
+    animation: lineFloat 6s ease-in-out infinite;
+  }
+
+  @keyframes lineFloat {
+    0%,100% { opacity: 0.4; transform: translateX(0); }
+    50% { opacity: 0.8; transform: translateX(2px); }
+  }
+
+  .hero-left {
+    padding: 180px 60px 100px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px; letter-spacing: 0.35em;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 5.5vw, 88px);
+    line-height: 1.0;
+    font-weight: 900;
+    margin-bottom: 28px;
+    opacity: 0; transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards 0.5s;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 16px; line-height: 1.7;
+    color: rgba(245,240,232,0.6);
+    max-width: 440px; margin-bottom: 52px;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards 0.7s;
+  }
+
+  .hero-actions {
+    display: flex; gap: 20px; align-items: center;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards 0.9s;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 16px 36px;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 700; text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::after {
+    content: ''; position: absolute; inset: 0;
+    background: white; opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .btn-primary:hover::after { opacity: 0.15; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.3); }
+
+  .btn-ghost {
+    color: var(--ivory); font-size: 12px; letter-spacing: 0.2em;
+    text-transform: uppercase; text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+    transition: all 0.3s;
+  }
+  .btn-ghost::before {
+    content: ''; width: 30px; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+  .btn-ghost:hover::before { width: 50px; }
+  .btn-ghost:hover { color: var(--gold); }
+
+  .hero-right {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    padding: 180px 60px 100px 40px;
+    opacity: 1;
+  }
+
+  .hero-card {
+    background: rgba(28,28,46,0.6);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(20px);
+    padding: 48px;
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 60px; height: 2px;
+    background: var(--gold);
+  }
+
+  .stat-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 32px; margin-bottom: 40px;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 700;
+    color: var(--gold); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.45);
+  }
+
+  .card-divider {
+    height: 1px; background: var(--line);
+    margin-bottom: 32px;
+  }
+
+  .trust-badges {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .badge {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13px; color: rgba(245,240,232,0.6);
+  }
+  .badge-icon {
+    width: 24px; height: 24px;
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-section {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 0;
+    overflow: hidden;
+    background: rgba(201,168,76,0.03);
+  }
+  .marquee-track {
+    display: flex; gap: 60px;
+    animation: marquee 25s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.4);
+    display: flex; align-items: center; gap: 20px;
+    flex-shrink: 0;
+  }
+  .marquee-item::after {
+    content: '✦';
+    color: var(--crimson);
+    font-size: 8px;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SECTIONS SHARED ── */
+  section { position: relative; }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-label::before {
+    content: ''; width: 30px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 64px);
+    font-weight: 700; line-height: 1.1;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 140px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 100px; align-items: center;
+    background: linear-gradient(135deg, rgba(28,28,46,0.3) 0%, transparent 100%);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about-left p {
+    font-size: 17px; line-height: 1.8;
+    color: rgba(245,240,232,0.65);
+    margin-top: 32px;
+  }
+  .about-left p + p { margin-top: 20px; }
+
+  .about-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-style: italic;
+    color: var(--gold); line-height: 1.5;
+    border-left: 2px solid var(--gold);
+    padding-left: 28px; margin-top: 40px;
+  }
+
+  .about-right { display: flex; flex-direction: column; gap: 2px; }
+
+  .pillar {
+    padding: 28px 32px;
+    border: 1px solid var(--line);
+    transition: all 0.3s ease;
+    position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .pillar::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: var(--gold);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+  }
+  .pillar:hover { background: var(--ghost); border-color: rgba(201,168,76,0.35); }
+  .pillar:hover::before { transform: scaleY(1); }
+
+  .pillar-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .pillar-name {
+    font-size: 13px; font-weight: 500; letter-spacing: 0.05em;
+  }
+  .pillar-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; color: var(--gold); opacity: 0.5;
+  }
+  .pillar-desc {
+    font-size: 13px; color: rgba(245,240,232,0.45); line-height: 1.6;
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 140px 60px;
+  }
+
+  .services-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: end;
+    margin-bottom: 80px;
+  }
+  .services-header p {
+    font-size: 16px; line-height: 1.7;
+    color: rgba(245,240,232,0.55);
+  }
+
+  .service-tabs {
+    display: flex; gap: 4px; margin-bottom: 60px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    background: none; border: none; color: rgba(245,240,232,0.4);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 14px 24px; cursor: pointer;
+    transition: all 0.3s; position: relative;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: var(--ivory); }
+  .tab-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: grid; }
+
+  /* Proteção Jurídica */
+  #tab-juridica {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .service-card {
+    padding: 40px 36px;
+    border: 1px solid var(--line);
+    transition: all 0.35s ease;
+    position: relative; overflow: hidden;
+    cursor: default;
+    background: rgba(28,28,46,0.2);
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.35s;
+  }
+  .service-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-4px); }
+  .service-card:hover::after { opacity: 1; }
+
+  .service-icon {
+    width: 44px; height: 44px;
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; margin-bottom: 24px;
+    position: relative; z-index: 1;
+    transition: border-color 0.3s;
+  }
+  .service-card:hover .service-icon { border-color: var(--gold); }
+
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    margin-bottom: 12px; position: relative; z-index: 1;
+  }
+  .service-desc {
+    font-size: 13px; line-height: 1.7;
+    color: rgba(245,240,232,0.5);
+    position: relative; z-index: 1;
+  }
+
+  /* Gestão de Crise */
+  #tab-crise {
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  /* Segurança Digital */
+  #tab-seguranca {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  /* Crimes & Golpes */
+  #tab-crimes {
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .service-card.featured {
+    border-color: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.04);
+    grid-column: span 2;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 40px; align-items: center;
+  }
+  .featured-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 4px 10px; display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  /* ── PROCESS ── */
+  .process {
+    padding: 140px 60px;
+    background: linear-gradient(180deg, rgba(28,28,46,0.4) 0%, transparent 100%);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .process-header { text-align: center; margin-bottom: 80px; }
+  .process-header .section-label { justify-content: center; }
+
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 60px; left: 12.5%; right: 12.5%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--line), var(--line), var(--line), transparent);
+    z-index: 0;
+  }
+
+  .step {
+    padding: 40px 28px;
+    text-align: center;
+    position: relative; z-index: 1;
+  }
+  .step-num {
+    width: 56px; height: 56px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px; color: var(--gold);
+    margin: 0 auto 28px;
+    background: var(--ink);
+    transition: all 0.3s;
+  }
+  .step:hover .step-num {
+    background: var(--gold); color: var(--ink);
+    border-color: var(--gold);
+  }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; margin-bottom: 12px;
+  }
+  .step-desc { font-size: 13px; color: rgba(245,240,232,0.5); line-height: 1.65; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    padding: 140px 60px;
+  }
+  .testimonials-header { margin-bottom: 80px; }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 2px;
+  }
+
+  .testimonial-card {
+    padding: 44px 40px;
+    border: 1px solid var(--line);
+    position: relative; background: rgba(28,28,46,0.2);
+    transition: all 0.3s;
+  }
+  .testimonial-card:hover { border-color: rgba(201,168,76,0.3); background: var(--ghost); }
+  .testimonial-card.large { grid-row: span 2; display: flex; flex-direction: column; justify-content: space-between; }
+
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px; line-height: 0.5;
+    color: rgba(201,168,76,0.15);
+    margin-bottom: 24px;
+  }
+  .testimonial-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 17px; line-height: 1.65;
+    color: rgba(245,240,232,0.75);
+    margin-bottom: 32px; flex-grow: 1;
+  }
+  .testimonial-card.large .testimonial-text { font-size: 21px; }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--mid), var(--slate));
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .author-name { font-size: 14px; font-weight: 500; }
+  .author-role { font-size: 11px; color: rgba(245,240,232,0.4); margin-top: 2px; }
+  .stars { color: var(--gold); font-size: 11px; margin-bottom: 20px; letter-spacing: 2px; }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 160px 60px;
+    text-align: center;
+    position: relative; overflow: hidden;
+    border-top: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(139,26,26,0.06) 0%, transparent 100%);
+  }
+
+  .cta-bg-text {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(80px, 18vw, 240px);
+    font-weight: 900;
+    color: rgba(201,168,76,0.03);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.03em;
+  }
+
+  .cta-content { position: relative; z-index: 2; }
+  .cta-content .section-label { justify-content: center; }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 700; line-height: 1.1;
+    max-width: 700px; margin: 24px auto 24px;
+  }
+  .cta-title em { font-style: italic; color: var(--gold); }
+
+  .cta-sub {
+    font-size: 16px; color: rgba(245,240,232,0.55);
+    max-width: 480px; margin: 0 auto 56px; line-height: 1.7;
+  }
+
+  .cta-actions { display: flex; gap: 20px; justify-content: center; align-items: center; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 60px;
+    border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 60px;
+    background: rgba(10,10,15,0.9);
+  }
+
+  .footer-brand .logo { font-size: 15px; display: block; margin-bottom: 20px; }
+  .footer-brand p {
+    font-size: 13px; color: rgba(245,240,232,0.4);
+    line-height: 1.7; max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-col li a {
+    font-size: 13px; color: rgba(245,240,232,0.45);
+    text-decoration: none; transition: color 0.3s;
+  }
+  .footer-col li a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    padding: 20px 60px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em;
+    color: rgba(245,240,232,0.2);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion) { .reveal { opacity: 1; transform: none; } }
+
+  /* ── WHATSAPP ── */
+  .whatsapp-float {
+    position: fixed; bottom: 32px; right: 32px;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 500;
+    box-shadow: 0 8px 32px rgba(37,211,102,0.35);
+    transition: all 0.3s;
+    text-decoration: none;
+    font-size: 24px;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(37,211,102,0.5); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 20px 30px; }
+    nav.scrolled { padding: 14px 30px; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 140px 30px 60px; }
+    .hero-right { display: none; }
+    .about { grid-template-columns: 1fr; padding: 80px 30px; gap: 60px; }
+    .services { padding: 80px 30px; }
+    .services-header { grid-template-columns: 1fr; }
+    #tab-juridica { grid-template-columns: 1fr; }
+    #tab-crise { grid-template-columns: 1fr; }
+    #tab-seguranca { grid-template-columns: 1fr; }
+    #tab-crimes { grid-template-columns: 1fr; }
+    .service-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .process { padding: 80px 30px; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .testimonials { padding: 80px 30px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonial-card.large { grid-row: auto; }
+    .cta-section { padding: 100px 30px; }
+    .cta-actions { flex-direction: column; }
+    footer { grid-template-columns: 1fr 1fr; padding: 60px 30px; }
+    .footer-bottom { padding: 20px 30px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  /* ── BLOG ── */
+  .blog {
+    padding: 140px 60px;
+    border-top: 1px solid var(--line);
+  }
+  .blog-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 60px;
+  }
+  .blog-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 700; line-height: 1.1;
+  }
+  .blog-see-all {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em;
+    color: var(--gold); text-decoration: none;
+    transition: opacity 0.3s; white-space: nowrap;
+  }
+  .blog-see-all:hover { opacity: 0.7; }
+  .blog-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 2px; background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .blog-card {
+    background: var(--ink);
+    padding: 40px 36px;
+    transition: background 0.3s; cursor: default;
+  }
+  .blog-card:hover { background: var(--ghost); }
+  .blog-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .blog-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700; line-height: 1.3;
+    margin-bottom: 14px;
+  }
+  .blog-main .blog-card-title { font-size: 26px; }
+  .blog-excerpt {
+    font-size: 13px; line-height: 1.7;
+    color: rgba(245,240,232,0.5); margin-bottom: 24px;
+  }
+  .blog-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px; letter-spacing: 0.2em;
+    color: rgba(245,240,232,0.2); text-transform: uppercase;
+  }
+
+
+  /* ══ BLOG ══ */
+  #blogPage { display: none; }
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #0a0a0f;
+  --ivory: #f5f0e8;
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --crimson: #8b1a1a;
+  --slate: #1c1c2e;
+  --mid: #3a3a5c;
+  --ghost: rgba(201,168,76,0.06);
+  --line: rgba(201,168,76,0.18);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--ink);
+  color: var(--ivory);
+  overflow-x: hidden;
+}
+
+/* noise */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9990; opacity: 0.35;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 24px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(10,10,15,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+.logo {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px; letter-spacing: 0.3em;
+  color: var(--gold); text-transform: uppercase;
+  text-decoration: none;
+}
+.logo span { color: var(--ivory); }
+.nav-links { display: flex; gap: 40px; align-items: center; }
+.nav-links a {
+  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(245,240,232,0.55); text-decoration: none;
+  transition: color 0.3s; font-weight: 500;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-cta {
+  border: 1px solid var(--line) !important;
+  padding: 10px 22px !important;
+  color: var(--gold) !important;
+  transition: all 0.3s !important;
+}
+.nav-cta:hover { background: var(--gold) !important; color: var(--ink) !important; }
+
+/* ── HERO BLOG ── */
+.blog-hero {
+  padding: 160px 60px 80px;
+  border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.blog-hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(201,168,76,0.05) 0%, transparent 70%);
+}
+.blog-hero-inner { position: relative; z-index: 2; max-width: 800px; }
+.blog-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 16px;
+}
+.blog-eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+.blog-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 6vw, 88px);
+  font-weight: 900; line-height: 1.0;
+  margin-bottom: 24px;
+}
+.blog-hero h1 em { font-style: italic; color: var(--gold); }
+.blog-hero p {
+  font-size: 17px; line-height: 1.75;
+  color: rgba(245,240,232,0.55);
+  max-width: 520px;
+}
+
+/* ── FILTER TABS ── */
+.filter-bar {
+  padding: 32px 60px;
+  border-bottom: 1px solid var(--line);
+  display: flex; gap: 8px; align-items: center;
+  overflow-x: auto;
+}
+.filter-btn {
+  background: none; border: 1px solid var(--line);
+  color: rgba(245,240,232,0.45);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  padding: 10px 20px; cursor: pointer;
+  transition: all 0.3s; white-space: nowrap;
+}
+.filter-btn:hover { color: var(--gold); border-color: var(--gold); }
+.filter-btn.active {
+  background: var(--gold); color: var(--ink);
+  border-color: var(--gold); font-weight: 700;
+}
+
+/* ── MAIN GRID ── */
+.blog-main {
+  padding: 80px 60px 120px;
+}
+
+/* Featured post */
+.post-featured {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--line);
+  margin-bottom: 2px;
+  transition: border-color 0.3s;
+  cursor: pointer;
+}
+.post-featured:hover { border-color: rgba(201,168,76,0.4); }
+.post-featured-img {
+  background: rgba(28,28,46,0.8);
+  position: relative; overflow: hidden;
+  min-height: 380px;
+  display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid var(--line);
+}
+.post-img-placeholder {
+  font-family: 'Playfair Display', serif;
+  font-size: 100px; font-weight: 900;
+  color: rgba(201,168,76,0.07);
+  user-select: none; line-height: 1;
+}
+.post-img-label {
+  position: absolute; bottom: 20px; left: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); opacity: 0.6;
+}
+.post-featured-content {
+  padding: 52px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  background: rgba(201,168,76,0.02);
+}
+.post-featured-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.post-featured-tag::before { content: '✦'; font-size: 7px; }
+.post-featured-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 700; line-height: 1.2;
+  margin-bottom: 20px;
+  transition: color 0.3s;
+}
+.post-featured:hover .post-featured-title { color: var(--gold); }
+.post-featured-excerpt {
+  font-size: 15px; line-height: 1.75;
+  color: rgba(245,240,232,0.55); margin-bottom: 36px;
+  flex-grow: 1;
+}
+.post-featured-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 24px; border-top: 1px solid var(--line);
+}
+.post-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,240,232,0.3);
+  display: flex; gap: 16px;
+}
+.post-read-more {
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  transition: gap 0.3s;
+}
+.post-read-more:hover { gap: 14px; }
+
+/* Post grid */
+.posts-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-bottom: 2px;
+}
+
+.post-card {
+  border: 1px solid var(--line);
+  padding: 40px 36px;
+  background: rgba(28,28,46,0.15);
+  transition: all 0.35s;
+  cursor: pointer; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.post-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.post-card:hover { background: var(--ghost); border-color: rgba(201,168,76,0.35); }
+.post-card:hover::before { transform: scaleX(1); }
+
+.post-card-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+}
+.post-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700; line-height: 1.25;
+  margin-bottom: 14px; transition: color 0.3s;
+  flex-grow: 1;
+}
+.post-card:hover .post-card-title { color: var(--gold-light); }
+.post-card-excerpt {
+  font-size: 13px; line-height: 1.7;
+  color: rgba(245,240,232,0.45); margin-bottom: 24px;
+}
+.post-card-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 20px; border-top: 1px solid var(--line);
+  margin-top: auto;
+}
+.post-card-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.2em;
+  color: rgba(245,240,232,0.25); text-transform: uppercase;
+}
+.post-card-arrow {
+  color: var(--gold); font-size: 14px; opacity: 0.5;
+  transition: all 0.3s;
+}
+.post-card:hover .post-card-arrow { opacity: 1; transform: translateX(4px); }
+
+/* Load more */
+.load-more-wrap {
+  text-align: center; padding: 60px 0 0;
+}
+.btn-load {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: rgba(245,240,232,0.5);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  padding: 16px 40px; cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-load:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── SIDEBAR STRIP ── */
+.blog-bottom {
+  border-top: 1px solid var(--line);
+  padding: 80px 60px;
+  display: grid; grid-template-columns: 1.5fr 1fr;
+  gap: 80px;
+}
+
+.newsletter h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 700;
+  margin-bottom: 12px;
+}
+.newsletter h3 em { font-style: italic; color: var(--gold); }
+.newsletter p {
+  font-size: 14px; color: rgba(245,240,232,0.5);
+  line-height: 1.7; margin-bottom: 28px;
+}
+.newsletter-form {
+  display: flex; gap: 0;
+}
+.newsletter-input {
+  flex: 1;
+  background: rgba(28,28,46,0.6);
+  border: 1px solid var(--line);
+  border-right: none;
+  color: var(--ivory);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; padding: 14px 20px;
+  outline: none; transition: border-color 0.3s;
+}
+.newsletter-input::placeholder { color: rgba(245,240,232,0.25); }
+.newsletter-input:focus { border-color: var(--gold); }
+.newsletter-btn {
+  background: var(--gold); color: var(--ink);
+  border: none; cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  font-weight: 700; padding: 14px 24px;
+  transition: all 0.3s;
+}
+.newsletter-btn:hover { background: var(--gold-light); }
+
+.popular-posts h3 {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 28px;
+}
+.popular-list { display: flex; flex-direction: column; }
+.popular-item {
+  display: flex; gap: 20px; align-items: flex-start;
+  padding: 20px 0; border-bottom: 1px solid var(--line);
+  cursor: pointer; transition: all 0.3s;
+}
+.popular-item:first-child { border-top: 1px solid var(--line); }
+.popular-item:hover .popular-title { color: var(--gold); }
+.popular-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; color: var(--gold);
+  opacity: 0.4; flex-shrink: 0; padding-top: 2px;
+}
+.popular-title {
+  font-size: 14px; line-height: 1.4; transition: color 0.3s;
+}
+.popular-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,240,232,0.25); margin-top: 4px;
+}
+
+/* ── FOOTER ── */
+.blog-footer {
+  border-top: 1px solid var(--line);
+  padding: 32px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(10,10,15,0.5);
+}
+.footer-left {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,240,232,0.2);
+}
+.footer-right a {
+  font-size: 13px; color: var(--gold);
+  text-decoration: none; transition: opacity 0.3s;
+}
+.footer-right a:hover { opacity: 0.7; }
+
+/* ── ARTICLE VIEW ── */
+.article-view {
+  display: none;
+  padding: 120px 60px 80px;
+  max-width: 860px; margin: 0 auto;
+}
+.article-view.active { display: block; }
+
+.article-back {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--mid-gray, rgba(245,240,232,0.4));
+  background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 48px; color: rgba(245,240,232,0.4);
+  transition: color 0.3s;
+}
+.article-back:hover { color: var(--gold); }
+.article-back::before { content: '←'; }
+
+.article-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 700; line-height: 1.1;
+  margin-bottom: 24px;
+}
+.article-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,240,232,0.3);
+  display: flex; gap: 24px; margin-bottom: 48px;
+  padding-bottom: 48px; border-bottom: 1px solid var(--line);
+}
+.article-lead {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-style: italic; line-height: 1.7;
+  color: rgba(245,240,232,0.7);
+  margin-bottom: 40px;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  margin: 48px 0 20px;
+  color: var(--ivory);
+}
+.article-body p {
+  font-size: 16px; line-height: 1.85;
+  color: rgba(245,240,232,0.65);
+  margin-bottom: 20px;
+}
+.article-body ul {
+  margin: 20px 0 20px 0;
+  padding-left: 0; list-style: none;
+}
+.article-body ul li {
+  font-size: 15px; line-height: 1.75;
+  color: rgba(245,240,232,0.65);
+  padding: 10px 0 10px 28px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.article-body ul li::before {
+  content: '—'; color: var(--gold);
+  position: absolute; left: 0;
+}
+.article-callout {
+  border-left: 2px solid var(--gold);
+  padding: 24px 28px;
+  background: var(--ghost);
+  margin: 36px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-style: italic;
+  line-height: 1.65; color: rgba(245,240,232,0.8);
+}
+.article-cta {
+  margin-top: 64px; padding: 48px;
+  border: 1px solid var(--line);
+  background: rgba(28,28,46,0.4);
+  text-align: center;
+}
+.article-cta p {
+  font-size: 15px; color: rgba(245,240,232,0.55);
+  margin-bottom: 24px;
+}
+.btn-gold {
+  background: var(--gold); color: var(--ink);
+  padding: 14px 36px;
+  font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+  font-weight: 700; text-decoration: none;
+  display: inline-block; transition: all 0.3s;
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+/* ── ANIMATIONS ── */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: all 0.7s cubic-bezier(0.23,1,0.32,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  nav { padding: 18px 24px; }
+  .nav-links { display: none; }
+  .blog-hero { padding: 120px 24px 60px; }
+  .filter-bar { padding: 24px; }
+  .blog-main { padding: 48px 24px 80px; }
+  .post-featured { grid-template-columns: 1fr; }
+  .post-featured-img { display: none; }
+  .post-featured-content { padding: 36px; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .blog-bottom { grid-template-columns: 1fr; padding: 60px 24px; gap: 48px; }
+  .blog-footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+  .article-view { padding: 100px 24px 60px; }
+}
+
+</style>
+</head>
+<body>
+<div id="mainSite">
+
+
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">Gabriel <span>Willians</span></div>
+  <ul>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#processo">Processo</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#contato" class="nav-cta">Consulta</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <div class="hero-left">
+    <p class="hero-eyebrow">OAB/SP 536.887 · Atendimento Online no Brasil</p>
+    <h1 class="hero-title">
+      Protegemos sua<br>
+      <em>identidade digital</em>
+    </h1>
+    <p class="hero-sub">
+      Gabriel Willians é advogado especialista em Direito Digital — proteção jurídica completa para criadores, infoprodutores e marcas que operam no ambiente online, com atendimento 100% digital em todo o Brasil.
+    </p>
+    <div class="hero-actions">
+      <a href="#contato" class="btn-primary">Consulta </a>
+      <a href="#servicos" class="btn-ghost">Ver Serviços</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Clientes atendidos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">98%</div>
+          <div class="stat-label">Taxa de sucesso</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">8+</div>
+          <div class="stat-label">Anos de experiência</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24h</div>
+          <div class="stat-label">Suporte em crises</div>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="trust-badges">
+        <div class="badge">
+          <div class="badge-icon">✓</div>
+          <span>OAB/SP 536.887 — Regularmente inscrito</span>
+        </div>
+        <div class="badge">
+          <div class="badge-icon">✓</div>
+          <span>Sigilo absoluto garantido</span>
+        </div>
+        <div class="badge">
+          <div class="badge-icon">✓</div>
+          <span>Atendimento 100% online em todo o Brasil</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Registro de Marca</span>
+    <span class="marquee-item">Proteção Autoral</span>
+    <span class="marquee-item">Direito de Imagem</span>
+    <span class="marquee-item">Combate ao Plágio</span>
+    <span class="marquee-item">Crimes Virtuais</span>
+    <span class="marquee-item">Blindagem Digital</span>
+    <span class="marquee-item">Gestão de Crise</span>
+    <span class="marquee-item">Remoção de Conteúdo</span>
+    <span class="marquee-item">Recuperação de Contas</span>
+    <span class="marquee-item">Contratos Digitais</span>
+    <span class="marquee-item">Registro de Marca</span>
+    <span class="marquee-item">Proteção Autoral</span>
+    <span class="marquee-item">Direito de Imagem</span>
+    <span class="marquee-item">Combate ao Plágio</span>
+    <span class="marquee-item">Crimes Virtuais</span>
+    <span class="marquee-item">Blindagem Digital</span>
+    <span class="marquee-item">Gestão de Crise</span>
+    <span class="marquee-item">Remoção de Conteúdo</span>
+    <span class="marquee-item">Recuperação de Contas</span>
+    <span class="marquee-item">Contratos Digitais</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about reveal" id="sobre">
+  <div class="about-left">
+    <div class="section-label">Quem somos</div>
+    <h2 class="section-title">O direito que acompanha a velocidade do digital</h2>
+    <p>Gabriel Willians é advogado inscrito na OAB/SP sob o número 536.887, com atuação exclusiva em Direito Digital. Enquanto o ambiente online evolui em velocidade exponencial, garanto que sua proteção jurídica evolua na mesma proporção — com rigor técnico, agilidade e total confidencialidade.</p>
+    <p>Atendo de forma 100% online criadores de conteúdo, infoprodutores e empresas digitais em todo o Brasil. Da proteção preventiva à resposta em crises, atuo em todas as frentes do universo digital.</p>
+    <blockquote class="about-quote">
+      "No digital, cada segundo de vulnerabilidade pode custar anos de construção. Meu trabalho é garantir que isso nunca aconteça com você."
+    </blockquote>
+  </div>
+  <div class="about-right">
+    <div class="pillar">
+      <div class="pillar-head">
+        <span class="pillar-name">Proteção Preventiva</span>
+        <span class="pillar-num">01</span>
+      </div>
+      <p class="pillar-desc">Antecipamos riscos antes que se tornem crises. Registro, contratos e blindagem antes do problema.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">
+        <span class="pillar-name">Resposta Estratégica</span>
+        <span class="pillar-num">02</span>
+      </div>
+      <p class="pillar-desc">Quando a crise chega, nossa equipe atua em 24h com ações administrativas, extrajudiciais e judiciais.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">
+        <span class="pillar-name">Recuperação & Indenização</span>
+        <span class="pillar-num">03</span>
+      </div>
+      <p class="pillar-desc">Não apenas resolvemos o problema — buscamos compensação financeira pelos danos causados.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">
+        <span class="pillar-name">Monitoramento Contínuo</span>
+        <span class="pillar-num">04</span>
+      </div>
+      <p class="pillar-desc">Vigilância permanente da sua marca, conteúdo e reputação no ambiente digital.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head">
+        <span class="pillar-name">Inteligência Jurídica</span>
+        <span class="pillar-num">05</span>
+      </div>
+      <p class="pillar-desc">Treinamento de equipes e assessoria estratégica para navegar o ambiente digital com segurança.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicos">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-label">Áreas de Atuação</div>
+      <h2 class="section-title">Proteção completa<br><em style="font-style:italic;color:var(--gold)">em todas as frentes</em></h2>
+    </div>
+    <p>Do registro de ativos digitais à recuperação de contas hackeadas, cobrimos cada camada da sua presença online com expertise jurídica especializada.</p>
+  </div>
+
+  <div class="service-tabs reveal">
+    <button class="tab-btn active" onclick="switchTab('juridica', this)">Proteção Jurídica</button>
+    <button class="tab-btn" onclick="switchTab('crise', this)">Gestão de Crise</button>
+    <button class="tab-btn" onclick="switchTab('seguranca', this)">Segurança Digital</button>
+    <button class="tab-btn" onclick="switchTab('crimes', this)">Crimes & Golpes</button>
+  </div>
+
+  <!-- Tab: Jurídica -->
+  <div id="tab-juridica" class="tab-content active">
+    <div class="service-card">
+      <div class="service-icon">™</div>
+      <div class="service-name">Registro de Marca</div>
+      <p class="service-desc">Proteção completa da sua identidade de marca junto ao INPI, com monitoramento de conflitos e estratégia de portfólio.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📦</div>
+      <div class="service-name">Registro de Infoproduto</div>
+      <p class="service-desc">Proteção jurídica dos seus cursos, e-books, mentorias e produtos digitais contra cópia e distribuição não autorizada.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">©</div>
+      <div class="service-name">Registros Autorais</div>
+      <p class="service-desc">Registro e proteção de obras intelectuais: textos, imagens, vídeos, músicas e demais criações originais.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🖼</div>
+      <div class="service-name">Direito de Imagem</div>
+      <p class="service-desc">Gestão completa dos direitos sobre o uso da sua imagem, voz e nome no ambiente digital e midiático.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛡</div>
+      <div class="service-name">Combate ao Plágio & Pirataria</div>
+      <p class="service-desc">Identificação, notificação e ação judicial contra copistas e piratas que exploram seu conteúdo sem autorização.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📄</div>
+      <div class="service-name">Contratos Digitais</div>
+      <p class="service-desc">Elaboração de contratos entre players, colaboradores, parceiros e prestadores de serviço no ecossistema digital.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏢</div>
+      <div class="service-name">Estruturação Societária</div>
+      <p class="service-desc">Organização jurídica da sua empresa digital com a estrutura societária mais adequada ao seu modelo de negócio.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚙️</div>
+      <div class="service-name">Estruturação Interna</div>
+      <p class="service-desc">Processos, documentações e adequação trabalhista para equipes digitais em conformidade com a legislação vigente.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <div class="service-name">Termos, Políticas & LGPD</div>
+      <p class="service-desc">Elaboração de Termos de Uso, Política de Privacidade, Reembolso e Uso de Imagem e Voz em conformidade com a LGPD.</p>
+    </div>
+  </div>
+
+  <!-- Tab: Crise -->
+  <div id="tab-crise" class="tab-content">
+    <div class="service-card featured">
+      <div>
+        <span class="featured-badge">Serviço Premium</span>
+        <div class="service-name" style="font-family:'Playfair Display',serif;font-size:28px;margin-bottom:16px;">Gestão de Crise<br><em style="color:var(--gold)">Completa</em></div>
+        <p class="service-desc" style="font-size:15px;line-height:1.75;">Protocolo de resposta ágil para situações que ameaçam sua reputação online. Atuamos antes, durante e após a crise com estratégia jurídica e comunicacional integrada.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="badge"><div class="badge-icon">→</div><span style="font-size:13px;color:rgba(245,240,232,0.6)">Ativação em até 2 horas</span></div>
+        <div class="badge"><div class="badge-icon">→</div><span style="font-size:13px;color:rgba(245,240,232,0.6)">Estratégia multidisciplinar</span></div>
+        <div class="badge"><div class="badge-icon">→</div><span style="font-size:13px;color:rgba(245,240,232,0.6)">Ação judicial imediata se necessário</span></div>
+        <div class="badge"><div class="badge-icon">→</div><span style="font-size:13px;color:rgba(245,240,232,0.6)">Monitoramento pós-crise</span></div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👁</div>
+      <div class="service-name">Monitoramento de Marca</div>
+      <p class="service-desc">Clipping e monitoramento contínuo da sua marca nas redes sociais, portais de notícia e demais plataformas digitais.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔥</div>
+      <div class="service-name">Haters & Cancelamento</div>
+      <p class="service-desc">Estratégia jurídica para lidar com campanhas de ódio, cancelamento e ataques organizados à sua reputação digital.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <div class="service-name">Treinamento de Equipe</div>
+      <p class="service-desc">Capacitação da sua equipe para prevenção de crises, boas práticas digitais e protocolos de resposta.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔒</div>
+      <div class="service-name">Prevenção Estratégica</div>
+      <p class="service-desc">Mapeamento de vulnerabilidades e implementação de barreiras jurídicas preventivas antes que qualquer crise se instale.</p>
+    </div>
+  </div>
+
+  <!-- Tab: Segurança -->
+  <div id="tab-seguranca" class="tab-content">
+    <div class="service-card">
+      <div class="service-icon">🛡</div>
+      <div class="service-name">Blindagem de Contas</div>
+      <p class="service-desc">Estrutura jurídica e técnica para proteger suas contas e perfis digitais contra invasões, suspensões e desativações.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔑</div>
+      <div class="service-name">Recuperação de Contas Hackeadas</div>
+      <p class="service-desc">Recuperação de contas e redes sociais hackeadas, suspensas ou desativadas — com busca de indenização pelos danos sofridos.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📜</div>
+      <div class="service-name">Testamento Digital</div>
+      <p class="service-desc">Planejamento e gestão dos seus ativos digitais para garantir que sejam preservados e transmitidos conforme sua vontade.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💎</div>
+      <div class="service-name">Gestão de Bens Digitais</div>
+      <p class="service-desc">Inventário, proteção e gestão estratégica de todos os seus ativos digitais — domínios, perfis, conteúdos e propriedade intelectual.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗑</div>
+      <div class="service-name">Remoção de Conteúdo</div>
+      <p class="service-desc">Remoção de posts difamatórios, vídeos inapropriados e qualquer conteúdo prejudicial à sua reputação ou negócio, com medidas administrativas, extrajudiciais e judiciais.</p>
+    </div>
+  </div>
+
+  <!-- Tab: Crimes -->
+  <div id="tab-crimes" class="tab-content">
+    <div class="service-card">
+      <div class="service-icon">⚖️</div>
+      <div class="service-name">Crimes Virtuais & Crimes Contra a Honra</div>
+      <p class="service-desc">Atuação completa em casos de difamação, injúria e calúnia no ambiente online. Protegemos sua honra e reputação com todas as medidas legais cabíveis contra ofensores — sejam pessoas físicas ou perfis anônimos.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💰</div>
+      <div class="service-name">Recuperação de Valores — Golpes Virtuais</div>
+      <p class="service-desc">Se você foi vítima de golpe virtual, atuamos na investigação do caso e em ações legais para recuperar os valores financeiros perdidos.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <div class="service-name">Investigação Digital</div>
+      <p class="service-desc">Levantamento de provas digitais, identificação de responsáveis e construção de dossiê para embasar ações judiciais sólidas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="processo">
+  <div class="process-header reveal">
+    <div class="section-label">Como atuamos</div>
+    <h2 class="section-title">Processo claro,<br>resultado consistente</h2>
+  </div>
+  <div class="process-steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Diagnóstico</div>
+      <p class="step-desc">Mapeamos a sua situação jurídica digital atual, identificando vulnerabilidades e riscos existentes.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Estratégia</div>
+      <p class="step-desc">Desenvolvemos um plano de proteção personalizado com prioridades claras e prazos definidos.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Execução</div>
+      <p class="step-desc">Implementamos todas as proteções jurídicas, registros, contratos e blindagens necessárias.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Monitoramento</div>
+      <p class="step-desc">Vigilância contínua e atualização permanente das suas proteções conforme o cenário evolui.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="depoimentos">
+  <div class="testimonials-header reveal">
+    <div class="section-label">Depoimentos</div>
+    <h2 class="section-title">O que nossos<br>clientes dizem</h2>
+  </div>
+  <div class="testimonials-grid reveal">
+    <div class="testimonial-card large">
+      <div>
+        <div class="stars">★★★★★</div>
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">Quando minha conta com 800 mil seguidores foi hackeada, achei que tinha perdido tudo. Em menos de 72 horas, a Gabriel Willians não só recuperou o acesso como iniciou um processo para indenização pelos danos. Proteção real, não promessa.</p>
+      </div>
+      <div class="testimonial-author">
+        <div class="author-avatar">R</div>
+        <div>
+          <div class="author-name">Rafael Mendes</div>
+          <div class="author-role">Criador de Conteúdo · 800k seguidores</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Lançamos nosso infoproduto com toda a estrutura jurídica blindada. Nenhum concorrente conseguiu copiar ou nos processar. Tranquilidade total.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">A</div>
+        <div>
+          <div class="author-name">Ana Paula Costa</div>
+          <div class="author-role">Infoprodutora Digital</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Fui vítima de golpe e perdi R$45k. Com a ajuda deles, consegui recuperar o valor integral. Não acreditava que era possível.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">M</div>
+        <div>
+          <div class="author-name">Marcos Oliveira</div>
+          <div class="author-role">Empresário Digital</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">A gestão de crise deles salvou minha carreira. Quando a campanha de cancelamento explodiu, souberam exatamente o que fazer e o que não fazer.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">C</div>
+        <div>
+          <div class="author-name">Carla Duarte</div>
+          <div class="author-role">Influenciadora & Coach</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+
+<!-- BLOG -->
+<section class="blog reveal" id="blog">
+  <div class="blog-header">
+    <div>
+      <div class="section-label">Blog Jurídico</div>
+      <h2 class="blog-title">Conteúdo que<br><em style="font-style:italic;color:var(--gold)">protege</em></h2>
+    </div>
+    <a href="#blog.html" class="blog-see-all">Ver todos os artigos →</a>
+  </div>
+
+  <div class="blog-grid">
+    <div class="blog-card blog-main">
+      <div class="blog-tag">Proteção de Marca</div>
+      <div class="blog-card-title">Por que registrar sua marca antes de crescer online é a decisão mais inteligente que você pode tomar</div>
+      <p class="blog-excerpt">Muitos criadores e infoprodutores esperam ter uma grande audiência para pensar em proteção jurídica. Esse é exatamente o erro que pode custar anos de trabalho em um único processo judicial.</p>
+      <div class="blog-meta">Por Gabriel Willians · Direito Digital</div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-tag">Segurança Digital</div>
+      <div class="blog-card-title">O que fazer nas primeiras 24h após ter sua conta hackeada</div>
+      <p class="blog-excerpt">Um protocolo jurídico e prático para minimizar danos e maximizar chances de recuperação imediata.</p>
+      <div class="blog-meta">Por Gabriel Willians · Crise Digital</div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-tag">LGPD & Contratos</div>
+      <div class="blog-card-title">Termos de Uso: o que precisa estar no seu para você estar protegido</div>
+      <p class="blog-excerpt">Os erros mais comuns nos Termos de Uso de infoprodutores e como corrigi-los antes que virem problema.</p>
+      <div class="blog-meta">Por Gabriel Willians · Contratos</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contato">
+  <div class="cta-bg-text">LEX</div>
+  <div class="cta-content reveal">
+    <div class="section-label">Próximo passo</div>
+    <h2 class="cta-title">Sua proteção começa<br><em>hoje.</em></h2>
+    <p class="cta-sub">Agende uma consulta de 30 minutos e descubra como estamos preparados para blindar sua presença digital.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/5511920701830" class="btn-primary">Agendar Consulta </a>
+      <a href="mailto:contato@gabrielwilliansadv.com.br" class="btn-ghost">Enviar E-mail</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="logo">Gabriel <span>Willians</span></span>
+    <p>Advocacia especializada em Direito Digital. Atendimento 100% online em todo o Brasil. OAB/SP 536.887.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Serviços</h4>
+    <ul>
+      <li><a href="#servicos" data-tab="juridica">Proteção Jurídica</a></li>
+      <li><a href="#servicos" data-tab="crise">Gestão de Crise</a></li>
+      <li><a href="#servicos" data-tab="seguranca">Segurança Digital</a></li>
+      <li><a href="#servicos" data-tab="crimes">Crimes & Golpes</a></li>
+      <li><a href="#servicos" data-tab="crise">Monitoramento</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Escritório</h4>
+    <ul>
+      <li><a href="#sobre">Sobre Gabriel Willians</a></li>
+      <li><a href="#processo">Como Funciona</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#" onclick="showBlog();return false;">Blog Jurídico</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Contato</h4>
+    <ul>
+      <li><a href="https://wa.me/5511920701830" target="_blank">WhatsApp (11) 92070-1830</a></li>
+      <li><a href="mailto:contato@gabrielwilliansadv.com.br">contato@gabrielwilliansadv.com.br</a></li>
+      <li><a href="https://wa.me/5511920701830" target="_blank">(11) 92070-1830</a></li>
+      <li><a href="mailto:contato@gabrielwilliansadv.com.br">contato@gabrielwilliansadv.com.br</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <span>© 2025 Gabriel Willians Advocacia — Todos os direitos reservados</span>
+  <span>OAB/SP 536.887</span>
+</div>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/5511920701830" class="whatsapp-float" target="_blank" title="Fale com Gabriel Willians no WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+
+  <script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Tabs
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Smooth scroll + tab switching from footer
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      const tabId = a.getAttribute('data-tab');
+      const target = document.querySelector(href);
+      
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 60);
+      }
+    });
+  });
+
+  // ── Blog navigation ──
+  function showBlog() {
+    document.getElementById('mainSite').style.display = 'none';
+    document.getElementById('blogPage').style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  function hideBlog() {
+    document.getElementById('blogPage').style.display = 'none';
+    document.getElementById('mainSite').style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+const articles = {
+  art1: {
+    tag: 'Proteção de Marca',
+    title: 'Por que registrar sua marca antes de crescer online é a decisão mais inteligente que você pode tomar',
+    date: 'Janeiro 2025',
+    readTime: '8 min leitura',
+    lead: 'Muitos criadores esperam ter uma grande audiência para pensar em proteção jurídica. Esse é exatamente o erro que pode custar anos de trabalho em um único processo judicial.',
+    body: `
+      <p>Existe uma crença muito comum no universo dos infoprodutores e criadores de conteúdo: "vou registrar minha marca quando crescer". Parece razoável. Mas do ponto de vista jurídico, é um dos erros mais custosos que um negócio digital pode cometer.</p>
+      <h2>O princípio da anterioridade</h2>
+      <p>No Brasil, quem registra primeiro tem o direito. Não quem usou primeiro, não quem tem mais seguidores, não quem é mais conhecido — quem registrou. Isso significa que um concorrente pode registrar sua marca enquanto você ainda está crescendo, e depois exigir que você pare de usá-la.</p>
+      <p>Isso acontece mais do que parece. Existem empresas especializadas em monitorar marcas populares ainda não registradas justamente para fazer isso.</p>
+      <h2>Quanto custa esperar?</h2>
+      <p>O registro de uma marca no INPI custa algumas centenas de reais. Um processo judicial para recuperar uma marca usurpada pode custar dezenas de milhares — além de meses ou anos de incerteza jurídica, sem contar o dano reputacional de ter que mudar o nome da sua marca no auge do crescimento.</p>
+      <div class="article-callout">"A proteção preventiva é sempre mais barata do que a reativa. Sempre."</div>
+      <h2>O que protege o registro de marca?</h2>
+      <ul>
+        <li>Uso exclusivo do nome e logotipo no seu segmento de mercado</li>
+        <li>Direito de acionar judicialmente quem copiar sua identidade</li>
+        <li>Proteção em plataformas como Instagram, YouTube e Hotmart</li>
+        <li>Valorização do seu negócio como ativo intangível</li>
+        <li>Base para expansão nacional e internacional</li>
+      </ul>
+      <h2>Quando registrar?</h2>
+      <p>A resposta simples é: agora. Se você já tem um nome, um produto ou uma marca que está usando publicamente, esse é o momento certo. Não espere crescer. Cresça já protegido.</p>
+      <p>O processo leva em média 12 a 18 meses no INPI, mas a proteção começa a valer a partir do protocolo. E com assessoria jurídica especializada, os riscos de indeferimento caem drasticamente.</p>
+    `
+  },
+  art2: {
+    tag: 'Segurança Digital',
+    title: 'O que fazer nas primeiras 24h após ter sua conta hackeada',
+    date: 'Fevereiro 2025',
+    readTime: '6 min leitura',
+    lead: 'Quando uma conta é invadida, cada hora conta. Ter um protocolo claro pode ser a diferença entre recuperar o acesso em dias ou perder a conta definitivamente.',
+    body: `
+      <p>A invasão de contas em redes sociais é cada vez mais comum — e cada vez mais sofisticada. O que muitas pessoas não sabem é que as primeiras horas após o ataque são decisivas para a recuperação.</p>
+      <h2>Primeiras horas: o que fazer</h2>
+      <ul>
+        <li>Documente tudo com prints antes de qualquer ação — isso é prova</li>
+        <li>Acesse o suporte da plataforma imediatamente e reporte o acesso não autorizado</li>
+        <li>Avise sua audiência em outros canais para evitar que sejam prejudicados</li>
+        <li>Altere senhas de todos os serviços vinculados ao e-mail da conta</li>
+        <li>Verifique se há apps de terceiros com acesso à conta e revogue todos</li>
+      </ul>
+      <h2>O papel do advogado nesse processo</h2>
+      <p>Além das medidas técnicas, existe uma frente jurídica que muitos negligenciam. Um advogado especialista pode acionar a plataforma via via formal para priorização do caso, emitir notificações extrajudiciais e, se necessário, obter uma decisão judicial em horas — especialmente quando há danos financeiros ou de imagem em curso.</p>
+      <div class="article-callout">"Plataformas respondem de forma muito diferente quando recebem uma notificação jurídica formal comparado com um ticket de suporte comum."</div>
+      <h2>Buscar indenização</h2>
+      <p>Se a conta foi usada para prejudicar sua imagem ou para aplicar golpes em seus seguidores, você pode ter direito a indenização — tanto da plataforma por falha de segurança, quanto do invasor quando identificado. Esse processo começa exatamente com a documentação das primeiras horas.</p>
+    `
+  },
+  art3: {
+    tag: 'Contratos & LGPD',
+    title: 'Termos de Uso: o que precisa estar no seu para você estar protegido',
+    date: 'Março 2025',
+    readTime: '7 min leitura',
+    lead: 'Um Termo de Uso mal elaborado não protege ninguém — e pode até ser usado contra você. Veja o que não pode faltar no seu.',
+    body: `
+      <p>Termos de Uso são documentos frequentemente subestimados por infoprodutores e criadores. "Baixei um modelo da internet" é uma frase que ouço com frequência — e que me preocupa muito, porque modelos genéricos raramente cobrem as especificidades de negócios digitais.</p>
+      <h2>O que um bom Termo de Uso precisa ter</h2>
+      <ul>
+        <li>Identificação completa do responsável pelo produto ou serviço</li>
+        <li>Descrição clara do que está sendo vendido ou ofertado</li>
+        <li>Política de reembolso detalhada e em conformidade com o CDC</li>
+        <li>Limitação de responsabilidade por resultados (especialmente em produtos de educação)</li>
+        <li>Regras de uso do conteúdo: o que o aluno pode e não pode fazer</li>
+        <li>Foro competente para resolução de conflitos</li>
+        <li>Cláusula de propriedade intelectual</li>
+      </ul>
+      <h2>LGPD: o que você precisa adequar</h2>
+      <p>Desde 2020, a Lei Geral de Proteção de Dados exige que qualquer negócio que colete dados de clientes — e todo infoprodutor coleta — tenha uma Política de Privacidade clara, que informe quais dados são coletados, por quê, como são usados e por quanto tempo são armazenados.</p>
+      <div class="article-callout">"A ANPD já começou a aplicar multas. Não é mais uma questão de 'se' as empresas serão fiscalizadas, mas de quando."</div>
+      <h2>O erro mais comum</h2>
+      <p>O maior erro é ter um Termo de Uso que não foi lido nem entendido pelo próprio criador. Se você não entende o que está no seu documento, ele não vai proteger você quando precisar — e pode até criar obrigações que você não sabia que tinha assumido.</p>
+    `
+  },
+  art4: {
+    tag: 'Gestão de Crise',
+    title: 'Cancelamento nas redes sociais: como agir juridicamente',
+    date: 'Abril 2025',
+    readTime: '9 min leitura',
+    lead: 'Uma campanha de cancelamento pode destruir anos de reputação em horas. Ter uma estratégia jurídica pronta faz toda a diferença.',
+    body: `
+      <p>O "cancelamento" — campanhas organizadas nas redes sociais para destruir a reputação de uma pessoa ou marca — tornou-se uma realidade frequente no Brasil. E embora tenha origem em questões legítimas de responsabilização, muitas vezes é usado de forma desproporcional, com informações falsas ou fora de contexto.</p>
+      <h2>O que a lei diz</h2>
+      <p>No Brasil, a liberdade de expressão tem limites claros. Difamação, calúnia e injúria são crimes previstos no Código Penal — e o fato de ocorrerem nas redes sociais não elimina a responsabilidade. Além disso, o Marco Civil da Internet define responsabilidades para plataformas e usuários.</p>
+      <h2>O que fazer quando a crise começa</h2>
+      <ul>
+        <li>Não delete publicações — isso pode ser interpretado como má-fé</li>
+        <li>Documente todos os posts, comentários e perfis envolvidos</li>
+        <li>Não responda de forma impulsiva publicamente</li>
+        <li>Acione um advogado especialista nas primeiras horas</li>
+        <li>Avalie com o advogado se é caso de nota pública ou silêncio estratégico</li>
+      </ul>
+      <div class="article-callout">"Em crises digitais, a resposta errada nas primeiras horas pode amplificar o problema muito mais do que o próprio ataque original."</div>
+      <h2>Quando entrar na justiça</h2>
+      <p>Nem toda crise requer ação judicial — e às vezes a judicialização pode alimentar ainda mais o ciclo. A decisão precisa ser estratégica: avaliamos os danos concretos, a identificação dos responsáveis, a viabilidade de remoção de conteúdo e o impacto esperado de cada ação antes de qualquer movimento.</p>
+    `
+  },
+  art5: {
+    tag: 'Crimes Virtuais',
+    title: 'Difamação online: como provar e agir juridicamente contra ofensores',
+    date: 'Maio 2025',
+    readTime: '7 min leitura',
+    lead: 'A difamação no ambiente digital tem características específicas que mudam completamente a estratégia jurídica. Entenda como construir um caso sólido.',
+    body: `
+      <p>Diferente do mundo físico, o ambiente digital cria registros. Cada post, cada comentário, cada mensagem deixa rastros — e isso, do ponto de vista jurídico, é tanto um desafio quanto uma oportunidade.</p>
+      <h2>Difamação, calúnia e injúria: qual é a diferença?</h2>
+      <ul>
+        <li><strong>Calúnia:</strong> atribuir falsamente um crime a alguém</li>
+        <li><strong>Difamação:</strong> imputar fato ofensivo à reputação de alguém</li>
+        <li><strong>Injúria:</strong> ofender a dignidade ou decoro de alguém</li>
+      </ul>
+      <p>No ambiente digital, os três são comuns — e todos configuram crime. A distinção importa para definir qual estratégia jurídica adotar.</p>
+      <h2>Como provar</h2>
+      <p>A prova digital precisa ser feita corretamente para ter valor judicial. Um simples print de tela pode não ser suficiente. O ideal é um registro notarial (ata notarial) que dá fé pública ao conteúdo, ou uma perícia técnica que garante a autenticidade da prova.</p>
+      <div class="article-callout">"Uma ata notarial de conteúdo digital tem o mesmo valor probatório de um documento físico autenticado em cartório."</div>
+      <h2>E quando o ofensor é anônimo?</h2>
+      <p>O anonimato nas redes é relativo. Com as medidas jurídicas corretas, é possível obrigar as plataformas a fornecerem dados de identificação de perfis anônimos que cometeram crimes — inclusive com urgência, antes que os dados sejam deletados.</p>
+    `
+  },
+  art6: {
+    tag: 'Proteção de Marca',
+    title: 'Plágio de infoproduto: como identificar, documentar e agir',
+    date: 'Junho 2025',
+    readTime: '6 min leitura',
+    lead: 'Descobrir que seu curso ou e-book foi copiado é devastador. Mas com a estratégia certa, é possível agir rápido e com eficácia.',
+    body: `
+      <p>O plágio de infoprodutos é um dos problemas mais frequentes que atendo. Com a facilidade de distribuição digital, copiar um curso ou e-book e revendê-lo se tornou praticamente trivial — o que não significa que seja legal ou que fique impune.</p>
+      <h2>Como identificar o plágio</h2>
+      <ul>
+        <li>Monitoramento de plataformas de venda (Hotmart, Eduzz, Monetizze)</li>
+        <li>Ferramentas de busca reversa de conteúdo</li>
+        <li>Alertas de menção da sua marca e produto</li>
+        <li>Denúncias de alunos ou seguidores</li>
+      </ul>
+      <h2>Como documentar</h2>
+      <p>Antes de qualquer ação, a documentação precisa ser irrefutável. Isso inclui registrar o produto original com data anterior ao plágio, capturar o conteúdo copiado com ata notarial, e preservar evidências de venda do produto plagiado.</p>
+      <div class="article-callout">"O registro autoral não é obrigatório no Brasil, mas facilita enormemente a prova em juízo — e é muito mais barato do que um processo sem ele."</div>
+      <h2>Quais ações são possíveis</h2>
+      <p>Do ponto de vista jurídico, as opções incluem: notificação extrajudicial com prazo para retirada, ação de remoção de conteúdo contra a plataforma, processo cível por danos materiais e morais, e ação criminal por violação de direitos autorais (Lei 9.610/98).</p>
+    `
+  },
+  art7: {
+    tag: 'Contratos & LGPD',
+    title: 'LGPD para infoprodutores: o que você precisa adequar agora',
+    date: 'Julho 2025',
+    readTime: '8 min leitura',
+    lead: 'A Lei Geral de Proteção de Dados não é só para grandes empresas. Se você vende online e coleta dados de clientes, ela se aplica a você.',
+    body: `
+      <p>Desde que a LGPD entrou em vigor com suas sanções em 2021, muitos infoprodutores ainda acreditam que a lei é "coisa de empresa grande". Não é. Qualquer negócio que trate dados pessoais de clientes — e todo infoprodutor faz isso — está sujeito às obrigações e penalidades da lei.</p>
+      <h2>O que é "tratamento de dados"?</h2>
+      <p>Praticamente tudo: coletar e-mails para uma lista, processar um pagamento, armazenar dados de acesso a um curso, usar ferramentas de analytics no seu site. Tudo isso configura tratamento de dados pessoais.</p>
+      <h2>Checklist básico de adequação</h2>
+      <ul>
+        <li>Política de Privacidade clara e acessível no seu site</li>
+        <li>Consentimento explícito para coleta de dados (checkboxes, não pré-marcados)</li>
+        <li>Canal para exercício dos direitos dos titulares (acesso, correção, exclusão)</li>
+        <li>Contrato de processamento de dados com plataformas terceiras</li>
+        <li>Inventário de dados: saber quais dados você coleta e onde estão armazenados</li>
+        <li>Prazo de retenção definido: por quanto tempo você guarda os dados</li>
+      </ul>
+      <div class="article-callout">"As multas da LGPD chegam a 2% do faturamento, limitadas a R$50 milhões por infração. Mas o dano reputacional de um vazamento costuma ser muito maior."</div>
+      <h2>Por onde começar</h2>
+      <p>O primeiro passo é fazer um mapeamento de dados — entender exatamente quais dados você coleta, como, por quê e onde ficam armazenados. A partir daí, a adequação se torna um processo claro e estruturado, sem precisar parar seu negócio para implementar.</p>
+    `
+  }
+};
+
+// Render article
+function openArticle(id) {
+  const art = articles[id];
+  if (!art) return;
+
+  document.getElementById('blogList').style.display = 'none';
+  const view = document.getElementById('articleView');
+  view.classList.add('active');
+
+  document.getElementById('articleContent').innerHTML = `
+    <div class="article-tag">${art.tag}</div>
+    <h1 class="article-title">${art.title}</h1>
+    <div class="article-meta">
+      <span>Gabriel Willians</span>
+      <span>${art.date}</span>
+      <span>${art.readTime}</span>
+    </div>
+    <p class="article-lead">${art.lead}</p>
+    <div class="article-body">${art.body}</div>
+    <div class="article-cta">
+      <p>Tem dúvidas sobre como proteger seu negócio digital? Fale diretamente com Gabriel Willians.</p>
+      <a href="https://wa.me/5511920701830" class="btn-gold" target="_blank">Consulta Gratuita pelo WhatsApp</a>
+    </div>
+  `;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function closeArticle() {
+  document.getElementById('blogList').style.display = 'block';
+  document.getElementById('articleView').classList.remove('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Filter posts
+function filterPosts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.post-card').forEach(card => {
+    if (cat === 'todos' || card.dataset.cat === cat) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => observer.observe(el));
+
+
+</script>
+
+</div><!-- /mainSite -->
+
+<div id="blogPage">
+<!-- NAV -->
+
+
+<!-- BLOG LIST VIEW -->
+<div id="blogList">
+
+  <!-- Hero -->
+  <div class="blog-hero">
+    <div class="blog-hero-bg"></div>
+    <div class="blog-hero-inner">
+      <p class="blog-eyebrow">Blog Jurídico</p>
+      <h1>Conhecimento que<br><em>protege.</em></h1>
+      <p>Artigos sobre Direito Digital, proteção de marca, segurança online e tudo que você precisa saber para navegar o ambiente digital com segurança jurídica.</p>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterPosts('todos', this)">Todos</button>
+    <button class="filter-btn" onclick="filterPosts('marca', this)">Proteção de Marca</button>
+    <button class="filter-btn" onclick="filterPosts('seguranca', this)">Segurança Digital</button>
+    <button class="filter-btn" onclick="filterPosts('contratos', this)">Contratos & LGPD</button>
+    <button class="filter-btn" onclick="filterPosts('crise', this)">Gestão de Crise</button>
+    <button class="filter-btn" onclick="filterPosts('crimes', this)">Crimes Virtuais</button>
+  </div>
+
+  <!-- Main content -->
+  <div class="blog-main">
+
+    <!-- Featured Post -->
+    <div class="post-featured reveal" onclick="openArticle('art1')">
+      <div class="post-featured-img">
+        <div class="post-img-placeholder">™</div>
+        <span class="post-img-label">Proteção de Marca</span>
+      </div>
+      <div class="post-featured-content">
+        <div>
+          <div class="post-featured-tag">Destaque · Proteção de Marca</div>
+          <h2 class="post-featured-title">Por que registrar sua marca antes de crescer online é a decisão mais inteligente que você pode tomar</h2>
+          <p class="post-featured-excerpt">Muitos criadores e infoprodutores esperam ter uma grande audiência para pensar em proteção jurídica. Esse é exatamente o erro que pode custar anos de trabalho em um único processo judicial. Entenda por que a proteção preventiva é sempre mais barata — e mais eficaz — do que a reativa.</p>
+        </div>
+        <div class="post-featured-footer">
+          <div class="post-meta">
+            <span>Gabriel Willians</span>
+            <span>Janeiro 2025</span>
+            <span>8 min leitura</span>
+          </div>
+          <a class="post-read-more">Ler artigo →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Posts grid -->
+    <div class="posts-grid reveal" id="postsGrid">
+
+      <div class="post-card" data-cat="seguranca" onclick="openArticle('art2')">
+        <div class="post-card-tag">Segurança Digital</div>
+        <div class="post-card-title">O que fazer nas primeiras 24h após ter sua conta hackeada</div>
+        <p class="post-card-excerpt">Um protocolo jurídico e prático para minimizar danos e maximizar as chances de recuperação imediata da sua conta.</p>
+        <div class="post-card-footer">
+          <span class="post-card-date">Fev 2025</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="contratos" onclick="openArticle('art3')">
+        <div class="post-card-tag">Contratos & LGPD</div>
+        <div class="post-card-title">Termos de Uso: o que precisa estar no seu para você estar protegido</div>
+        <p class="post-card-excerpt">Os erros mais comuns nos Termos de Uso de infoprodutores e como corrigi-los antes que virem um problema jurídico sério.</p>
+        <div class="post-card-footer">
+          <span class="post-card-date">Mar 2025</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="crise" onclick="openArticle('art4')">
+        <div class="post-card-tag">Gestão de Crise</div>
+        <div class="post-card-title">Cancelamento nas redes sociais: como agir juridicamente</div>
+        <p class="post-card-excerpt">Quando a crise de imagem explode no digital, cada hora conta. Saiba quais medidas tomar — e quais evitar — nas primeiras horas.</p>
+        <div class="post-card-footer">
+          <span class="post-card-date">Abr 2025</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="crimes" onclick="openArticle('art5')">
+        <div class="post-card-tag">Crimes Virtuais</div>
+        <div class="post-card-title">Difamação online: como provar e agir juridicamente contra ofensores</div>
+        <p class="post-card-excerpt">A difamação no ambiente digital tem características específicas que mudam completamente a estratégia jurídica. Entenda como construir seu caso.</p>
+        <div class="post-card-footer">
+          <span class="post-card-date">Mai 2025</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="marca" onclick="openArticle('art6')">
+        <div class="post-card-tag">Proteção de Marca</div>
+        <div class="post-card-title">Plágio de infoproduto: como identificar, documentar e agir</div>
+        <p class="post-card-excerpt">Seu curso foi copiado? Saiba como reunir as provas certas e quais ações jurídicas estão disponíveis para quem tem seu trabalho plagiado.</p>
+        <div class="post-card-footer">
+          <span class="post-card-date">Jun 2025</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" data-cat="contratos" onclick="openArticle('art7')">
+        <div class="post-card-tag">Contratos & LGPD</div>
+        <div class="post-card-title">LGPD para infoprodutores: o que você precisa adequar agora</div>
+        <p class="post-card-excerpt">A Lei Geral de Proteção de Dados afeta diretamente quem vende online. Veja o checklist completo de adequação para o seu negócio digital.</p>
+        <div class="post-card-footer">
+          <span class="post-card-date">Jul 2025</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="load-more-wrap reveal">
+      <button class="btn-load">Carregar mais artigos</button>
+    </div>
+
+  </div>
+
+  <!-- Bottom: Newsletter + Popular -->
+  <div class="blog-bottom reveal">
+    <div class="newsletter">
+      <h3>Receba conteúdo<br><em>toda semana</em></h3>
+      <p>Assine e receba artigos sobre Direito Digital, alertas jurídicos e dicas práticas de proteção para o seu negócio online.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail">
+        <button class="newsletter-btn">Assinar</button>
+      </div>
+    </div>
+    <div class="popular-posts">
+      <h3>Mais lidos</h3>
+      <div class="popular-list">
+        <div class="popular-item" onclick="openArticle('art1')">
+          <span class="popular-num">01</span>
+          <div>
+            <div class="popular-title">Por que registrar sua marca antes de crescer online</div>
+            <div class="popular-tag">Proteção de Marca</div>
+          </div>
+        </div>
+        <div class="popular-item" onclick="openArticle('art2')">
+          <span class="popular-num">02</span>
+          <div>
+            <div class="popular-title">O que fazer nas primeiras 24h após ter sua conta hackeada</div>
+            <div class="popular-tag">Segurança Digital</div>
+          </div>
+        </div>
+        <div class="popular-item" onclick="openArticle('art4')">
+          <span class="popular-num">03</span>
+          <div>
+            <div class="popular-title">Cancelamento nas redes sociais: como agir juridicamente</div>
+            <div class="popular-tag">Gestão de Crise</div>
+          </div>
+        </div>
+        <div class="popular-item" onclick="openArticle('art3')">
+          <span class="popular-num">04</span>
+          <div>
+            <div class="popular-title">Termos de Uso: o que precisa estar no seu</div>
+            <div class="popular-tag">Contratos & LGPD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="blog-footer">
+    <span class="footer-left">© 2025 Gabriel Willians Advocacia · OAB/SP 536.887</span>
+    <div class="footer-right">
+      <a href="https://wa.me/5511920701830" target="_blank">Fale com Gabriel →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ARTICLE VIEW -->
+<div id="articleView" class="article-view">
+  <button class="article-back" onclick="closeArticle()">Voltar ao blog</button>
+  <div id="articleContent"></div>
+</div>
+
+<!-- ARTICLES DATA -->
+</div>
+</body>
+</html>
