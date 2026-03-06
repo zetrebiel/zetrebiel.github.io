@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direitos do Vigilante | Assessoria Jurídica Trabalhista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --preto: #0a0a0a;
+    --cinza-escuro: #111318;
+    --cinza-medio: #1e2028;
+    --cinza-card: #252830;
+    --dourado: #c9a84c;
+    --dourado-claro: #e8c76a;
+    --dourado-escuro: #8a6a20;
+    --vermelho: #c0392b;
+    --vermelho-suave: #e74c3c;
+    --branco: #f5f5f0;
+    --branco-suave: #ccc;
+    --texto: #b0b4bc;
+    --borda: rgba(201,168,76,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--preto);
+    color: var(--branco);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--dourado);
+    color: var(--preto);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: rgba(10,10,10,0.97);
+    border-bottom: 1px solid var(--borda);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.12em;
+    color: var(--dourado);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--branco); }
+
+  .nav-cta {
+    background: var(--dourado);
+    color: var(--preto);
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-cta:hover { background: var(--dourado-claro); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 70% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(192,57,43,0.06) 0%, transparent 60%),
+      linear-gradient(160deg, #0a0a0a 0%, #111318 50%, #0f1015 100%);
+  }
+
+  .hero-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, transparent, var(--dourado), transparent);
+    opacity: 0.6;
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 780px;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--borda);
+    border-radius: 2px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 32px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--dourado);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 7vw, 82px);
+    line-height: 1.0;
+    letter-spacing: 0.02em;
+    color: var(--branco);
+    margin-bottom: 28px;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--dourado);
+    display: block;
+  }
+
+  h1 .destaque-vermelho {
+    color: var(--vermelho-suave);
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--texto);
+    max-width: 600px;
+    margin-bottom: 44px;
+    line-height: 1.7;
+  }
+
+  .hero-sub strong { color: var(--branco); font-weight: 600; }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--dourado);
+    color: var(--preto);
+    padding: 16px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: all 0.25s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--dourado-claro);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.25);
+  }
+
+  .btn-primary svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--branco-suave);
+    padding: 16px 28px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--dourado);
+    color: var(--dourado);
+  }
+
+  .hero-trust {
+    display: flex;
+    gap: 32px;
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .trust-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--dourado);
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .trust-label {
+    font-size: 12px;
+    color: var(--texto);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 90px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-full {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .section-full > .inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    border-left: 3px solid var(--dourado);
+    padding-left: 12px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.15;
+    color: var(--branco);
+    margin-bottom: 16px;
+  }
+
+  h2 em { font-style: italic; color: var(--dourado); }
+
+  .section-intro {
+    font-size: 18px;
+    color: var(--texto);
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--borda), transparent);
+    margin: 0 40px;
+  }
+
+  /* ── ERROS SECTION ── */
+  .erros-bg {
+    background: var(--cinza-escuro);
+    padding: 90px 0;
+  }
+
+  .erros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--borda);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 48px;
+  }
+
+  .erro-item {
+    background: var(--cinza-medio);
+    padding: 32px 28px;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .erro-item:hover { background: var(--cinza-card); }
+
+  .erro-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(192,57,43,0.12);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+
+  .erro-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--branco);
+    margin-bottom: 8px;
+  }
+
+  .erro-desc {
+    font-size: 14px;
+    color: var(--texto);
+    line-height: 1.6;
+  }
+
+  .erro-alert {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--vermelho-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 12px;
+  }
+
+  /* ── DIREITOS ── */
+  .direitos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .direito-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 28px 32px;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    background: var(--cinza-card);
+    transition: background 0.2s;
+  }
+
+  .direito-row:last-child { border-bottom: none; }
+  .direito-row:hover { background: #2a2d38; }
+
+  .direito-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--dourado);
+    letter-spacing: 0.05em;
+    min-width: 36px;
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .direito-content h3 {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--branco);
+    margin-bottom: 6px;
+  }
+
+  .direito-content p {
+    font-size: 14px;
+    color: var(--texto);
+    line-height: 1.6;
+  }
+
+  /* ── DOR SECTION ── */
+  .dor-bg {
+    background: linear-gradient(135deg, #0e1014 0%, var(--cinza-escuro) 100%);
+    padding: 90px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dor-bg::before {
+    content: '';
+    position: absolute;
+    right: -100px;
+    top: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(192,57,43,0.06) 0%, transparent 70%);
+  }
+
+  .dor-checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .dor-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--cinza-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 6px;
+    padding: 20px 22px;
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .dor-item:hover {
+    border-color: rgba(201,168,76,0.3);
+    background: #2a2d38;
+    transform: translateX(4px);
+  }
+
+  .dor-check {
+    width: 22px;
+    height: 22px;
+    background: rgba(192,57,43,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 11px;
+    color: var(--vermelho-suave);
+  }
+
+  .dor-text {
+    font-size: 15px;
+    color: var(--branco-suave);
+    line-height: 1.5;
+  }
+
+  .dor-cta-box {
+    margin-top: 48px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.03));
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 36px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .dor-cta-text h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--branco);
+    margin-bottom: 6px;
+  }
+
+  .dor-cta-text p {
+    font-size: 15px;
+    color: var(--texto);
+  }
+
+  /* ── COMO FUNCIONA ── */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--dourado), transparent);
+  }
+
+  .step {
+    display: flex;
+    gap: 28px;
+    padding: 0 0 40px 0;
+    position: relative;
+  }
+
+  .step-num {
+    width: 48px;
+    height: 48px;
+    background: var(--dourado);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--preto);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-body h3 {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--branco);
+    margin-bottom: 8px;
+    padding-top: 10px;
+  }
+
+  .step-body p {
+    font-size: 15px;
+    color: var(--texto);
+    line-height: 1.65;
+  }
+
+  .step-note {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--dourado);
+    font-weight: 600;
+  }
+
+  /* ── AUTORIDADE ── */
+  .autoridade-bg {
+    background: var(--cinza-escuro);
+    padding: 90px 0;
+  }
+
+  .autoridade-card {
+    background: var(--cinza-card);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-top: 48px;
+  }
+
+  .advogado-foto {
+    width: 160px;
+    height: 160px;
+    border-radius: 8px;
+    background: var(--cinza-medio);
+    border: 2px solid var(--borda);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .advogado-foto::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--dourado);
+  }
+
+  .advogado-info h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--branco);
+    margin-bottom: 4px;
+  }
+
+  .advogado-oab {
+    font-size: 13px;
+    color: var(--dourado);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+  }
+
+  .advogado-bio {
+    font-size: 15px;
+    color: var(--texto);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .advogado-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .adv-tag {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--borda);
+    color: var(--dourado);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 100px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── CTA PRINCIPAL ── */
+  .cta-principal {
+    background: linear-gradient(135deg, #0f1115, #1a1d24);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 72px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-principal::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--dourado), transparent);
+  }
+
+  .cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-principal h2 {
+    font-size: clamp(28px, 4vw, 48px);
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .cta-principal p {
+    color: var(--texto);
+    font-size: 18px;
+    max-width: 560px;
+    margin: 0 auto 44px;
+    position: relative;
+  }
+
+  .cta-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .cta-btns .btn-primary { font-size: 16px; padding: 18px 36px; }
+
+  .cta-garantias {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .garantia-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--texto);
+  }
+
+  .garantia-item span { font-size: 16px; }
+
+  /* ── FAQ ── */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    background: var(--cinza-card);
+  }
+
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--branco);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 24px 32px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: color 0.2s;
+  }
+
+  .faq-question:hover { color: var(--dourado); }
+
+  .faq-question .arrow {
+    font-size: 18px;
+    color: var(--dourado);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+
+  .faq-answer.open { max-height: 400px; }
+
+  .faq-answer-inner {
+    padding: 0 32px 24px;
+    font-size: 15px;
+    color: var(--texto);
+    line-height: 1.7;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    padding-top: 16px;
+  }
+
+  .faq-question.active .arrow { transform: rotate(180deg); }
+  .faq-question.active { color: var(--dourado); }
+
+  /* ── SIGILO ── */
+  .sigilo-bg {
+    background: var(--cinza-escuro);
+    padding: 90px 0;
+  }
+
+  .sigilo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .sigilo-card {
+    background: var(--cinza-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 32px 28px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+
+  .sigilo-card:hover { border-color: var(--borda); }
+
+  .sigilo-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .sigilo-card h3 {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--branco);
+    margin-bottom: 8px;
+  }
+
+  .sigilo-card p {
+    font-size: 14px;
+    color: var(--texto);
+    line-height: 1.6;
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: var(--dourado);
+    padding: 80px 40px;
+    text-align: center;
+  }
+
+  .cta-final h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 72px);
+    color: var(--preto);
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+
+  .cta-final p {
+    font-size: 18px;
+    color: rgba(0,0,0,0.65);
+    max-width: 540px;
+    margin: 0 auto 40px;
+  }
+
+  .btn-escuro {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--preto);
+    color: var(--dourado);
+    padding: 18px 40px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+
+  .btn-escuro:hover {
+    background: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--preto);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 40px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.1em;
+    color: var(--dourado);
+    margin-bottom: 12px;
+  }
+
+  .footer-oab {
+    font-size: 13px;
+    color: var(--texto);
+    margin-bottom: 8px;
+  }
+
+  .footer-aviso {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    max-width: 640px;
+    margin: 16px auto 0;
+    line-height: 1.6;
+  }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wpp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 60px;
+    height: 60px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+    z-index: 999;
+    text-decoration: none;
+    animation: wppPulse 3s infinite;
+    transition: transform 0.2s;
+  }
+
+  .wpp-float:hover { transform: scale(1.1); }
+
+  .wpp-float svg { width: 30px; height: 30px; fill: white; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  @keyframes wppPulse {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 6px 32px rgba(37,211,102,0.7); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    section { padding: 64px 20px; }
+    .hero { padding: 60px 20px; }
+    .cta-principal { padding: 48px 24px; }
+    .autoridade-card {
+      grid-template-columns: 1fr;
+    }
+    .advogado-foto { width: 100px; height: 100px; font-size: 36px; }
+    .dor-cta-box { flex-direction: column; }
+    .hero-trust { gap: 20px; }
+    .section-full > .inner { padding: 0 20px; }
+    .sigilo-bg .inner, .autoridade-bg .inner, .erros-bg .inner, .dor-bg .inner { padding: 0 20px; }
+    .cta-final { padding: 60px 20px; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  📞 Análise gratuita e sigilosa do seu caso — Fale agora pelo WhatsApp
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">VIGILANTE<span>DIREITOS</span></a>
+  <a href="https://wa.me/5511920701830?text=Oi,%20quero%20analisar%20meu%20caso" class="nav-cta" target="_blank">
+    Falar com advogado
+  </a>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Direito Trabalhista Especializado</div>
+
+    <h1>
+      Você protege vidas.<br>
+      <em>Quem protege</em>
+      <span class="destaque-vermelho">os seus direitos?</span>
+    </h1>
+
+    <p class="hero-sub">
+      Muitos vigilantes e seguranças trabalham anos sem receber tudo o que têm direito por lei.
+      <strong>Horas extras, adicional de periculosidade, 12x36</strong> — a lei é clara. Seu empregador sabe disso.
+      <strong>Você também precisa saber.</strong>
+    </p>
+
+    <div class="hero-ctas">
+      <a href="https://wa.me/5511920701830?text=Oi,%20quero%20analisar%20meu%20caso%20gratuitamente" class="btn-primary" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.28 12 19.79 19.79 0 011.22 3.36 2 2 0 013.22 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Quero analisar meu caso — Grátis
+      </a>
+      <a href="#como-funciona" class="btn-secondary">Como funciona ↓</a>
+    </div>
+
+    <div class="hero-trust">
+      <div class="trust-item">
+        <span class="trust-num">+10 anos</span>
+        <span class="trust-label">de experiência trabalhista</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">+500</span>
+        <span class="trust-label">casos analisados</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">100%</span>
+        <span class="trust-label">sigilo garantido</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     ERROS DAS EMPRESAS
+══════════════════════════════════════════ -->
+<div class="erros-bg section-full">
+  <div class="inner">
+    <div class="tag reveal">Erros frequentes das empresas de segurança</div>
+    <h2 class="reveal">O que as empresas <em>frequentemente fazem errado</em><br>com o trabalhador de segurança</h2>
+    <p class="section-intro reveal">A legislação trabalhista é específica para quem atua com segurança armada. Muitos empregadores não cumprem a lei corretamente — e isso pode gerar direitos ao trabalhador.</p>
+
+    <div class="erros-grid">
+      <div class="erro-item reveal">
+        <div class="erro-icon">⚠️</div>
+        <div class="erro-title">Adicional de periculosidade pago errado</div>
+        <p class="erro-desc">O adicional é de 30% sobre o salário base. Muitas empresas calculam sobre a parcela errada ou simplesmente não pagam corretamente.</p>
+        <span class="erro-alert">▲ Muito comum</span>
+      </div>
+      <div class="erro-item reveal">
+        <div class="erro-icon">⏰</div>
+        <div class="erro-title">Horas extras não pagas ou calculadas errado</div>
+        <p class="erro-desc">Escala 12x36 tem regras claras. Quando a jornada é descumprida, surge o direito a horas extras com adicional de 50% ou 100%.</p>
+        <span class="erro-alert">▲ Muito comum</span>
+      </div>
+      <div class="erro-item reveal">
+        <div class="erro-icon">🔫</div>
+        <div class="erro-title">Acúmulo de função sem pagamento extra</div>
+        <p class="erro-desc">Vigilante que exerce funções de supervisor, coordenador ou operador de câmera sem a devida remuneração adicional pode ter direito ao reconhecimento da função acumulada.</p>
+        <span class="erro-alert">▲ Frequente</span>
+      </div>
+      <div class="erro-item reveal">
+        <div class="erro-icon">📄</div>
+        <div class="erro-title">Direitos sonegados na rescisão</div>
+        <p class="erro-desc">Aviso prévio calculado errado, FGTS não recolhido, seguro-desemprego impedido indevidamente. São erros que prejudicam diretamente o trabalhador.</p>
+        <span class="erro-alert">▲ Frequente</span>
+      </div>
+      <div class="erro-item reveal">
+        <div class="erro-icon">🌙</div>
+        <div class="erro-title">Adicional noturno não pago</div>
+        <p class="erro-desc">Quem trabalha entre 22h e 5h tem direito ao adicional noturno de 20% sobre a hora normal. Muitos empregadores ignoram ou calculam incorretamente.</p>
+        <span class="erro-alert">▲ Frequente</span>
+      </div>
+      <div class="erro-item reveal">
+        <div class="erro-icon">📅</div>
+        <div class="erro-title">Intervalos desrespeitados</div>
+        <p class="erro-desc">Intervalo para refeição e descanso obrigatório. Quando não é concedido, gera pagamento como hora extra. Muitos trabalhadores nunca recebem por isso.</p>
+        <span class="erro-alert">▲ Frequente</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     DIREITOS DO VIGILANTE
+══════════════════════════════════════════ -->
+<section>
+  <div class="tag reveal">Seus direitos trabalhistas</div>
+  <h2 class="reveal">O que a lei garante ao <em>vigilante e segurança armada</em></h2>
+  <p class="section-intro reveal">A Consolidação das Leis do Trabalho (CLT) e a Lei 7.102/83 asseguram uma série de direitos específicos para quem atua na área de segurança. Conheça os principais:</p>
+
+  <div class="direitos-list">
+    <div class="direito-row reveal">
+      <div class="direito-num">01</div>
+      <div class="direito-content">
+        <h3>Adicional de Periculosidade de 30%</h3>
+        <p>Calculado sobre o salário base, é obrigatório para quem trabalha com arma de fogo, produtos inflamáveis ou em atividades de risco. Esse direito não pode ser negado por convenção coletiva sem análise criteriosa.</p>
+      </div>
+    </div>
+    <div class="direito-row reveal">
+      <div class="direito-num">02</div>
+      <div class="direito-content">
+        <h3>Horas Extras com Adicional de 50% a 100%</h3>
+        <p>Toda hora trabalhada além da jornada legal deve ser paga com adicional. Em domingos e feriados, esse adicional pode chegar a 100%.</p>
+      </div>
+    </div>
+    <div class="direito-row reveal">
+      <div class="direito-num">03</div>
+      <div class="direito-content">
+        <h3>Jornada 12x36 com regras específicas</h3>
+        <p>A escala 12x36 é permitida, mas deve ser pactuada corretamente e cumprir todas as regras. Irregularidades nessa jornada geram direitos ao trabalhador.</p>
+      </div>
+    </div>
+    <div class="direito-row reveal">
+      <div class="direito-num">04</div>
+      <div class="direito-content">
+        <h3>FGTS, 13º, Férias e Verbas Rescisórias</h3>
+        <p>Todos os direitos gerais da CLT se aplicam ao vigilante. O não pagamento correto dessas verbas pode ser questionado na Justiça do Trabalho.</p>
+      </div>
+    </div>
+    <div class="direito-row reveal">
+      <div class="direito-num">05</div>
+      <div class="direito-content">
+        <h3>Adicional Noturno de 20%</h3>
+        <p>Para quem trabalha no período noturno (22h às 5h), a legislação garante acréscimo de 20% na remuneração da hora trabalhada nesse intervalo.</p>
+      </div>
+    </div>
+    <div class="direito-row reveal">
+      <div class="direito-num">06</div>
+      <div class="direito-content">
+        <h3>Equipamentos e Uniformes por conta do empregador</h3>
+        <p>A empresa é obrigada a fornecer uniforme, equipamentos de proteção e armamento sem descontar do salário do trabalhador.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     DOR – VOCÊ PASSA POR ISSO?
+══════════════════════════════════════════ -->
+<div class="dor-bg section-full">
+  <div class="inner">
+    <div class="tag reveal">Você se identifica com alguma dessas situações?</div>
+    <h2 class="reveal">"Você pode estar <em>passando por isso</em><br>agora mesmo"</h2>
+    <p class="section-intro reveal">Muitos trabalhadores convivem com irregularidades sem saber que têm o direito de questionar. Veja se alguma dessas situações é familiar:</p>
+
+    <div class="dor-checklist">
+      <div class="dor-item reveal">
+        <div class="dor-check">✗</div>
+        <p class="dor-text">Trabalho com arma e nunca recebi o adicional de periculosidade corretamente.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-check">✗</div>
+        <p class="dor-text">Faço horas extras todo mês, mas sinto que o valor recebido não está certo.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-check">✗</div>
+        <p class="dor-text">Fui demitido e tive dificuldade para receber tudo que era meu direito.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-check">✗</div>
+        <p class="dor-text">Trabalho em escala 12x36 mas nunca me explicaram se meus direitos estão sendo respeitados.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-check">✗</div>
+        <p class="dor-text">Exerço funções de supervisor ou coordenador sem receber a mais por isso.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-check">✗</div>
+        <p class="dor-text">Trabalho à noite e não tenho certeza se o adicional noturno está sendo pago certo.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-check">✗</div>
+        <p class="dor-text">Nunca tiro intervalo no trabalho e nunca recebi nada por isso.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-check">✗</div>
+        <p class="dor-text">Fiquei anos numa empresa e não sei se o FGTS foi recolhido corretamente.</p>
+      </div>
+    </div>
+
+    <div class="dor-cta-box reveal">
+      <div class="dor-cta-text">
+        <h3>Se você marcou pelo menos um item, vale a pena conversar.</h3>
+        <p>A análise é gratuita e sem compromisso. Em poucos minutos você sabe como está sua situação.</p>
+      </div>
+      <a href="https://wa.me/5511920701830?text=Oi,%20quero%20analisar%20meu%20caso%20gratuitamente" class="btn-primary" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Analisar meu caso agora
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     COMO FUNCIONA
+══════════════════════════════════════════ -->
+<section id="como-funciona">
+  <div class="tag reveal">Simples, rápido e sem burocracia</div>
+  <h2 class="reveal">Como funciona a <em>análise do seu caso</em></h2>
+  <p class="section-intro reveal">Em 3 passos simples, você tem clareza sobre a sua situação trabalhista — sem precisar sair de casa.</p>
+
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Você entra em contato pelo WhatsApp</h3>
+        <p>Sem custo, sem compromisso. Basta mandar uma mensagem contando sua situação. Nosso time responde rapidamente e agenda a conversa no melhor horário para você.</p>
+        <span class="step-note">⏱ Resposta em até 30 minutos no horário comercial</span>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>O advogado analisa o seu caso</h3>
+        <p>Você conta sua história — quando trabalhou, como era a escala, como foi a demissão. O advogado analisa tudo com atenção e identifica se existem irregularidades que podem ser questionadas.</p>
+        <span class="step-note">🔒 Tudo com total sigilo e ética profissional</span>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Você recebe uma orientação clara</h3>
+        <p>Depois da análise, você entende exatamente quais são seus direitos, quais as possibilidades jurídicas e quais os próximos passos — com total transparência sobre o que pode ou não ser feito.</p>
+        <span class="step-note">✅ Sem enrolação, sem promessas — só informação honesta</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     AUTORIDADE
+══════════════════════════════════════════ -->
+<div class="autoridade-bg section-full">
+  <div class="inner">
+    <div class="tag reveal">Quem vai cuidar do seu caso</div>
+    <h2 class="reveal">Experiência especializada em <em>Direito do Trabalho</em></h2>
+
+    <div class="autoridade-card reveal">
+      <div class="advogado-foto">⚖️</div>
+      <div class="advogado-info">
+        <h3>Dr. Gabriel Willians </h3>
+        <p class="advogado-oab">OAB/XX 536.887 — Advogado Trabalhista</p>
+        <p class="advogado-bio">
+          Com mais de 2 anos dedicados exclusivamente ao Direito do Trabalho, o escritório acumula experiência em centenas de casos envolvendo trabalhadores de segurança privada em todo o Brasil. O atendimento é próximo, humano e sem jargão jurídico — porque o trabalhador merece entender o que está acontecendo com o seu caso.
+          <br><br>
+          Atuamos com ética, responsabilidade e transparência em todas as etapas. Acreditamos que a informação é o primeiro passo para que o trabalhador possa tomar decisões conscientes sobre seus direitos.
+        </p>
+        <div class="advogado-tags">
+          <span class="adv-tag">Direito do Trabalho</span>
+          <span class="adv-tag">Segurança Privada</span>
+          <span class="adv-tag">Horas Extras</span>
+          <span class="adv-tag">Rescisão</span>
+          <span class="adv-tag">Periculosidade</span>
+          <span class="adv-tag">Jornada 12x36</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     CTA PRINCIPAL
+══════════════════════════════════════════ -->
+<section>
+  <div class="cta-principal reveal">
+    <div class="cta-glow"></div>
+    <div class="tag" style="margin: 0 auto 20px;">Análise gratuita e sigilosa</div>
+    <h2>Você merece saber<br>se seus direitos <em>estão sendo respeitados</em></h2>
+    <p>A consulta é gratuita. A análise é feita por um advogado especialista. E você decide o que fazer com a informação.</p>
+
+    <div class="cta-btns">
+      <a href="https://wa.me/5511920701830?text=Oi,%20sou%20vigilante%20e%20quero%20analisar%20meu%20caso%20gratuitamente" class="btn-primary" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar agora pelo WhatsApp
+      </a>
+    </div>
+
+    <div class="cta-garantias">
+      <div class="garantia-item"><span>🔒</span> Sigilo total</div>
+      <div class="garantia-item"><span>✅</span> Análise gratuita</div>
+      <div class="garantia-item"><span>⚖️</span> Profissional inscrito na OAB</div>
+      <div class="garantia-item"><span>📱</span> Atendimento por WhatsApp</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     FAQ
+══════════════════════════════════════════ -->
+<section>
+  <div class="tag reveal">Dúvidas frequentes</div>
+  <h2 class="reveal">Perguntas que os vigilantes <em>mais fazem</em></h2>
+
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Preciso pagar algo para ter o caso analisado?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Não. A análise inicial do seu caso é completamente gratuita e sem compromisso. Você nos conta sua situação, o advogado analisa e te orienta. Só depois disso — e com total transparência — você decide se quer ou não prosseguir com alguma ação.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Posso entrar com ação mesmo estando empregado ainda?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Sim. A lei garante ao trabalhador o direito de buscar a Justiça do Trabalho mesmo que ainda esteja empregado. A análise do advogado vai indicar qual o melhor caminho para o seu caso específico, considerando todos os aspectos da sua situação.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Tenho direito ao adicional de periculosidade mesmo trabalhando em posto fixo?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Em geral, sim. O critério para o adicional de periculosidade na segurança privada está relacionado ao uso de arma de fogo e à exposição ao risco inerente à atividade — não apenas ao local de trabalho. Cada caso tem suas particularidades, por isso a análise individual é essencial.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Quanto tempo tenho para reclamar meus direitos após a demissão?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          A regra geral da CLT é que o trabalhador tem 2 anos após o fim do contrato de trabalho para ingressar com ação na Justiça do Trabalho. Dentro desse prazo, é possível reivindicar direitos referentes aos últimos 5 anos do contrato. Por isso, se você foi demitido recentemente ou percebeu alguma irregularidade, não espere muito para buscar orientação.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        A empresa pode me demitir por reclamar meus direitos?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          A legislação brasileira proíbe qualquer tipo de represália do empregador contra o trabalhador que exercer seus direitos legais. Se isso ocorrer, pode configurar demissão por justa causa do empregador ou assédio moral — situações que também geram direitos ao trabalhador. O advogado pode orientar como agir em cada situação.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        A jornada 12x36 é legal? Tenho direito a horas extras nessa escala?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          A jornada 12x36 é permitida por lei, mas deve ser devidamente formalizada em contrato ou convenção coletiva e cumprir todas as exigências legais. Se a empresa descumprir as regras dessa escala — como não conceder os intervalos corretos, exigir plantões extras não pagos, ou outros desvios — podem surgir direitos ao trabalhador. Cada caso precisa ser avaliado individualmente.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Preciso de documentos para a análise inicial?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Para a análise inicial, basta você nos contar sua situação. Se quiser compartilhar contracheques, cartão de ponto ou o contrato de trabalho, isso ajuda a dar mais precisão à análise. Mas para a primeira conversa, não é obrigatório nenhum documento — o mais importante é entender o que você vivenciou.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     SIGILO E CONFIANÇA
+══════════════════════════════════════════ -->
+<div class="sigilo-bg section-full">
+  <div class="inner">
+    <div class="tag reveal">Por que confiar no nosso atendimento</div>
+    <h2 class="reveal">Seu caso tratado com <em>sigilo total</em><br>e ética profissional</h2>
+
+    <div class="sigilo-grid">
+      <div class="sigilo-card reveal">
+        <span class="sigilo-icon">🔐</span>
+        <h3>Sigilo absoluto</h3>
+        <p>Todas as informações que você compartilha são protegidas pelo sigilo profissional do advogado — é uma obrigação ética e legal da profissão.</p>
+      </div>
+      <div class="sigilo-card reveal">
+        <span class="sigilo-icon">⚖️</span>
+        <h3>Ética OAB</h3>
+        <p>Atuamos dentro de todas as normas do Código de Ética da OAB. Nenhuma promessa irresponsável — apenas orientação jurídica séria e honesta.</p>
+      </div>
+      <div class="sigilo-card reveal">
+        <span class="sigilo-icon">🤝</span>
+        <h3>Sem pressão</h3>
+        <p>A análise é gratuita e sem compromisso. Você tem total liberdade para decidir o que fazer com as informações que receber.</p>
+      </div>
+      <div class="sigilo-card reveal">
+        <span class="sigilo-icon">📱</span>
+        <h3>Atendimento humano</h3>
+        <p>Sem robôs, sem scripts. Você fala diretamente com quem entende do assunto — de forma clara, respeitosa e acessível.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     CTA FINAL
+══════════════════════════════════════════ -->
+<div class="cta-final">
+  <h2>NÃO DEIXE SEUS<br>DIREITOS PARA DEPOIS</h2>
+  <p>O prazo para reivindicar direitos trabalhistas é limitado. Cada dia que passa pode ser um dia a menos para agir. Comece com uma conversa — é gratuita.</p>
+  <a href="https://wa.me/5511920701830?text=Oi,%20sou%20vigilante%20e%20quero%20analisar%20meu%20caso%20gratuitamente" class="btn-escuro" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Falar com o Advogado Agora
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">VIGILANTE DIREITOS</div>
+  <div class="footer-oab">Dr. Gabriel Willians — OAB/XX 536.887 | Advogado Trabalhista</div>
+  <div class="footer-aviso">
+    Este site tem caráter exclusivamente informativo e não constitui consultoria jurídica. As informações aqui contidas são de natureza geral e cada caso possui suas particularidades. A contratação dos serviços do escritório não implica qualquer promessa de resultado. Atuamos em conformidade com o Código de Ética e Disciplina da OAB.
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5511920701830?text=Oi,%20quero%20analisar%20meu%20caso%20gratuitamente" class="wpp-float" target="_blank" aria-label="Falar pelo WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-answer.open').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-question.active').forEach(b => b.classList.remove('active'));
+    // open clicked
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.classList.add('active');
+    }
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
