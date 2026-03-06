@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Advogado especialista em direitos trabalhistas para vigilantes e seguranças. Análise gratuita e sigilosa do seu caso. Adicional de periculosidade, horas extras, 12x36 e muito mais.">
+  <title>Vigilante — Conheça e Defenda Seus Direitos | Dr. Gabriel</title>
+  <link rel="stylesheet" href="vigilante-styles.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     TOPBAR
+══════════════════════════════════════ -->
+<div id="topbar">
+  📞 Análise gratuita e sigilosa do seu caso — Fale agora pelo WhatsApp
+</div>
+
+<!-- ══════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    Willians Advogados<span class="logo-separator"></span>
+    <span class="logo-sub">Advogado<br>Trabalhista</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#erros">Erros das Empresas</a></li>
+    <li><a href="#direitos">Seus Direitos</a></li>
+    <li><a href="#como-funciona">Como Funciona</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="https://wa.me/5511920701830?text=Oi%2C+quero+analisar+meu+caso" class="nav-cta-btn" target="_blank">Falar com Dr. Gabriel</a></li>
+  </ul>
+
+  <div class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg-layers">
+    <div class="hero-gradient"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-accent-line"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Direito Trabalhista Especializado em Segurança Privada
+    </div>
+
+    <h1 class="hero-headline">
+      Você protege vidas.
+      <span class="line-gold">Quem protege</span>
+      <span class="line-red">os seus direitos?</span>
+    </h1>
+
+    <p class="hero-sub">
+      Vigilantes e seguranças armados trabalham em condições de risco — e a lei prevê
+      <strong>direitos específicos para isso</strong>. Adicional de periculosidade, horas extras,
+      jornada 12x36, rescisão. <strong>Você sabe se está recebendo tudo correto?</strong>
+    </p>
+
+    <div class="hero-ctas">
+      <a href="https://wa.me/5511920701830?text=Oi%2C+sou+vigilante+e+quero+analisar+meu+caso+gratuitamente"
+         class="btn btn-gold btn-gold-lg" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Análise gratuita pelo WhatsApp
+      </a>
+      <a href="#simulador" class="btn btn-outline">Ver simulador de direitos ↓</a>
+    </div>
+
+    <div class="hero-trust-bar">
+      <div class="trust-stat">
+        <span class="trust-stat-num" data-count="10" data-suffix="+">0+</span>
+        <span class="trust-stat-label">anos de experiência</span>
+      </div>
+      <div class="trust-stat">
+        <span class="trust-stat-num" data-count="500" data-suffix="+">0+</span>
+        <span class="trust-stat-label">casos analisados</span>
+      </div>
+      <div class="trust-stat">
+        <span class="trust-stat-num" data-count="100" data-suffix="+">0+</span>
+        <span class="trust-stat-label">% sigilo profissional</span>
+      </div>
+      <div class="trust-stat" id="atendimento-status">
+        <span style="color: var(--verde);">● Carregando...</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     SIMULADOR DE DIREITOS
+══════════════════════════════════════ -->
+<div id="simulador" class="section-full">
+  <div class="container">
+    <div class="simulador-inner">
+      <div class="section-tag reveal">Simulador gratuito</div>
+      <h2 class="section-title reveal">Descubra em <em>2 minutos</em><br>se você pode ter direitos a questionar</h2>
+      <p class="section-intro reveal">Responda 4 perguntas simples e veja um primeiro indicativo da sua situação trabalhista.</p>
+
+      <div class="quiz-progress">
+        <div class="quiz-progress-dot done"></div>
+        <div class="quiz-progress-dot"></div>
+        <div class="quiz-progress-dot"></div>
+        <div class="quiz-progress-dot"></div>
+      </div>
+
+      <div id="quiz-steps"></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     ERROS DAS EMPRESAS
+══════════════════════════════════════ -->
+<div id="erros" class="section-full">
+  <div class="container">
+    <div class="section-tag reveal">O que as empresas costumam fazer errado</div>
+    <h2 class="section-title reveal">Irregularidades <em>frequentes</em><br>nas empresas de segurança privada</h2>
+    <p class="section-intro reveal">A legislação trabalhista tem regras claras para quem atua com segurança armada. Muitos empregadores não cumprem a lei corretamente — e isso pode gerar direitos ao trabalhador.</p>
+
+    <div class="erros-grid">
+      <div class="erro-card reveal">
+        <div class="erro-icone">⚠️</div>
+        <h3 class="erro-titulo">Adicional de periculosidade pago errado</h3>
+        <p class="erro-desc">O adicional é de 30% sobre o salário base. Muitas empresas calculam sobre a parcela errada, atrasam ou simplesmente não pagam conforme a lei.</p>
+        <span class="erro-alerta">▲ Muito comum</span>
+      </div>
+
+      <div class="erro-card reveal">
+        <div class="erro-icone">⏰</div>
+        <h3 class="erro-titulo">Horas extras não pagas ou com cálculo incorreto</h3>
+        <p class="erro-desc">A escala 12x36 tem regras claras. Quando a jornada é descumprida, surgem direitos a horas extras com adicional de 50% ou 100%.</p>
+        <span class="erro-alerta">▲ Muito comum</span>
+      </div>
+
+      <div class="erro-card reveal">
+        <div class="erro-icone">🔫</div>
+        <h3 class="erro-titulo">Acúmulo de função sem remuneração extra</h3>
+        <p class="erro-desc">Vigilante que também exerce funções de supervisor, coordenador ou operador de câmeras sem remuneração adicional pode ter direito ao reconhecimento da função acumulada.</p>
+        <span class="erro-alerta">▲ Frequente</span>
+      </div>
+
+      <div class="erro-card reveal">
+        <div class="erro-icone">📄</div>
+        <h3 class="erro-titulo">Verbas rescisórias pagas incorretamente</h3>
+        <p class="erro-desc">Aviso prévio calculado errado, FGTS não recolhido corretamente, seguro-desemprego impedido indevidamente. São situações que prejudicam diretamente o trabalhador.</p>
+        <span class="erro-alerta">▲ Frequente</span>
+      </div>
+
+      <div class="erro-card reveal">
+        <div class="erro-icone">🌙</div>
+        <h3 class="erro-titulo">Adicional noturno não pago ou calculado errado</h3>
+        <p class="erro-desc">Quem trabalha entre 22h e 5h tem direito ao adicional noturno de 20% sobre a hora normal. Muitos empregadores ignoram ou calculam incorretamente.</p>
+        <span class="erro-alerta">▲ Frequente</span>
+      </div>
+
+      <div class="erro-card reveal">
+        <div class="erro-icone">🍽️</div>
+        <h3 class="erro-titulo">Intervalos de descanso desrespeitados</h3>
+        <p class="erro-desc">O intervalo para refeição e descanso é obrigatório. Quando não concedido corretamente, gera o direito ao pagamento adicional. Muitos trabalhadores nunca recebem por isso.</p>
+        <span class="erro-alerta">▲ Frequente</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     DIREITOS DO VIGILANTE
+══════════════════════════════════════ -->
+<section id="direitos">
+  <div class="section-tag reveal">O que a lei garante</div>
+  <h2 class="section-title reveal">Os principais <em>direitos trabalhistas</em><br>do vigilante e segurança armada</h2>
+  <p class="section-intro reveal">A CLT e a Lei 7.102/83 asseguram direitos específicos para quem atua na área de segurança privada. Conheça os mais importantes:</p>
+
+  <div class="direitos-wrapper">
+    <div class="direito-item reveal">
+      <div class="direito-num">01</div>
+      <div class="direito-body">
+        <h3>Adicional de Periculosidade de 30%</h3>
+        <p>Calculado sobre o salário base, é obrigatório para quem trabalha com arma de fogo ou em atividades de risco. Esse direito não pode ser negado sem análise criteriosa.</p>
+      </div>
+    </div>
+
+    <div class="direito-item reveal">
+      <div class="direito-num">02</div>
+      <div class="direito-body">
+        <h3>Horas Extras com Adicional de 50% a 100%</h3>
+        <p>Toda hora trabalhada além da jornada legal deve ser paga com adicional. Em domingos e feriados, esse adicional pode chegar a 100%.</p>
+      </div>
+    </div>
+
+    <div class="direito-item reveal">
+      <div class="direito-num">03</div>
+      <div class="direito-body">
+        <h3>Jornada 12x36 com regras específicas</h3>
+        <p>A escala 12x36 é permitida, mas deve ser corretamente formalizada e cumprir todas as exigências legais. Irregularidades geram direitos ao trabalhador.</p>
+      </div>
+    </div>
+
+    <div class="direito-item reveal">
+      <div class="direito-num">04</div>
+      <div class="direito-body">
+        <h3>FGTS, 13º Salário e Férias</h3>
+        <p>Todos os direitos gerais da CLT se aplicam ao vigilante. O não pagamento correto dessas verbas pode ser questionado na Justiça do Trabalho.</p>
+      </div>
+    </div>
+
+    <div class="direito-item reveal">
+      <div class="direito-num">05</div>
+      <div class="direito-body">
+        <h3>Adicional Noturno de 20%</h3>
+        <p>Para quem trabalha no período noturno (22h às 5h), a legislação garante acréscimo de 20% na remuneração de cada hora trabalhada nesse intervalo.</p>
+      </div>
+    </div>
+
+    <div class="direito-item reveal">
+      <div class="direito-num">06</div>
+      <div class="direito-body">
+        <h3>Uniformes e Equipamentos pelo Empregador</h3>
+        <p>A empresa é obrigada a fornecer uniforme, equipamentos de proteção individual e armamento sem descontar do salário do trabalhador.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     DOR — VOCÊ PASSA POR ISSO?
+══════════════════════════════════════ -->
+<div id="dor" class="section-full">
+  <div class="container">
+    <div class="section-tag reveal">Você se identifica?</div>
+    <h2 class="section-title reveal">"Você pode estar <em>passando por isso</em><br>agora mesmo"</h2>
+    <p class="section-intro reveal">Muitos trabalhadores convivem com irregularidades sem saber que têm o direito de questionar. Alguma dessas situações é familiar?</p>
+
+    <div class="dor-grid">
+      <div class="dor-item reveal">
+        <div class="dor-x">✗</div>
+        <p class="dor-texto">Trabalho com arma e nunca recebi o adicional de periculosidade corretamente.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-x">✗</div>
+        <p class="dor-texto">Faço horas extras todo mês, mas sinto que o valor recebido não está certo.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-x">✗</div>
+        <p class="dor-texto">Fui demitido e tive dificuldade para receber tudo o que era meu direito.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-x">✗</div>
+        <p class="dor-texto">Trabalho em escala 12x36 mas nunca ninguém me explicou se meus direitos estão sendo respeitados.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-x">✗</div>
+        <p class="dor-texto">Exerço funções de supervisor ou coordenador sem receber nada a mais por isso.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-x">✗</div>
+        <p class="dor-texto">Trabalho à noite e não tenho certeza se o adicional noturno está sendo pago corretamente.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-x">✗</div>
+        <p class="dor-texto">Nunca consigo tirar o intervalo no trabalho e nunca recebi nada por isso.</p>
+      </div>
+      <div class="dor-item reveal">
+        <div class="dor-x">✗</div>
+        <p class="dor-texto">Fiquei anos numa empresa e não sei se o FGTS foi recolhido corretamente em todo período.</p>
+      </div>
+    </div>
+
+    <div class="dor-cta-box reveal">
+      <div class="dor-cta-texto">
+        <h3>Se você marcou pelo menos um item, vale a pena conversar.</h3>
+        <p>A análise é gratuita e sem compromisso. Em poucos minutos você entende como está sua situação.</p>
+      </div>
+      <a href="https://wa.me/5511920701830?text=Oi%2C+sou+vigilante+e+quero+analisar+meu+caso+gratuitamente"
+         class="btn btn-gold" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Analisar meu caso agora
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     COMO FUNCIONA
+══════════════════════════════════════ -->
+<section id="como-funciona">
+  <div class="section-tag reveal">Simples e sem burocracia</div>
+  <h2 class="section-title reveal">Como funciona a <em>análise do seu caso</em></h2>
+  <p class="section-intro reveal">Em 3 passos simples, você tem clareza sobre a sua situação trabalhista — sem precisar sair de casa.</p>
+
+  <div class="steps-timeline">
+    <div class="step-item reveal">
+      <div class="step-circle">1</div>
+      <div class="step-content">
+        <h3>Você entra em contato pelo WhatsApp</h3>
+        <p>Sem custo, sem compromisso. Basta mandar uma mensagem contando sua situação. Nossa equipe responde rapidamente e agenda a conversa no melhor horário para você.</p>
+        <span class="step-nota">⏱ Resposta em até 30 minutos no horário comercial</span>
+      </div>
+    </div>
+
+    <div class="step-item reveal">
+      <div class="step-circle">2</div>
+      <div class="step-content">
+        <h3>O Dr. Gabriel analisa o seu caso</h3>
+        <p>Você conta sua história — quando trabalhou, como era a escala, como foi a demissão. O advogado analisa com atenção e identifica se existem irregularidades que podem ser questionadas legalmente.</p>
+        <span class="step-nota">🔒 Tudo com total sigilo e ética profissional</span>
+      </div>
+    </div>
+
+    <div class="step-item reveal">
+      <div class="step-circle">3</div>
+      <div class="step-content">
+        <h3>Você recebe uma orientação clara e honesta</h3>
+        <p>Após a análise, você entende exatamente quais são seus direitos, quais as possibilidades jurídicas disponíveis e quais os próximos passos — com total transparência sobre o que pode ou não ser feito.</p>
+        <span class="step-nota">✅ Sem enrolação, sem promessas — só informação honesta</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     DEPOIMENTOS
+══════════════════════════════════════ -->
+<div id="depoimentos" class="section-full">
+  <div class="container">
+    <div class="section-tag reveal">O que dizem nossos clientes</div>
+    <h2 class="section-title reveal">Trabalhadores que <em>conheceram seus direitos</em></h2>
+    <p class="section-intro reveal">Depoimentos reais de clientes atendidos. Nomes preservados por sigilo profissional.</p>
+
+    <div class="depoimentos-grid">
+      <div class="depoimento-card reveal">
+        <div class="depoimento-stars">★★★★★</div>
+        <p class="depoimento-texto">"Trabalhei 6 anos como vigilante e nunca soube que meu adicional de periculosidade estava sendo pago errado. O Dr. Gabriel me explicou tudo com clareza. Foi a primeira vez que um advogado realmente me ouviu."</p>
+        <div class="depoimento-autor">
+          <div class="depoimento-avatar">👨</div>
+          <div>
+            <p class="depoimento-nome">M.S.</p>
+            <p class="depoimento-cargo">Vigilante Patrimonial · São Paulo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="depoimento-card reveal">
+        <div class="depoimento-stars">★★★★★</div>
+        <p class="depoimento-texto">"Fui demitido depois de 4 anos e não sabia quais documentos pedir. O atendimento foi rápido, pelo WhatsApp mesmo, e fiquei tranquilo sabendo o que estava acontecendo. Recomendo demais."</p>
+        <div class="depoimento-autor">
+          <div class="depoimento-avatar">👨</div>
+          <div>
+            <p class="depoimento-nome">R.O.</p>
+            <p class="depoimento-cargo">Vigilante Armado · Rio de Janeiro</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="depoimento-card reveal">
+        <div class="depoimento-stars">★★★★★</div>
+        <p class="depoimento-texto">"Meu marido sempre achava que empresa de segurança era assim mesmo. Depois da conversa com o Dr. Gabriel, descobrimos que havia irregularidades na escala dele. Atendimento excelente e muito humano."</p>
+        <div class="depoimento-autor">
+          <div class="depoimento-avatar">👩</div>
+          <div>
+            <p class="depoimento-nome">C.F.</p>
+            <p class="depoimento-cargo">Esposa de vigilante · Belo Horizonte</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     ADVOGADO / AUTORIDADE
+══════════════════════════════════════ -->
+<section id="advogado">
+  <div class="section-tag reveal">Quem vai cuidar do seu caso</div>
+  <h2 class="section-title reveal">Experiência focada em <em>Direito do Trabalho</em></h2>
+
+  <div class="advogado-card">
+    <div class="advogado-foto-wrap reveal-left">
+      <!-- Foto real: coloque o arquivo dr_gabriel008.png na mesma pasta do HTML -->
+      <img src="dr_gabriel008.png" alt="Dr. Gabriel — Advogado Trabalhista"
+           class="advogado-foto"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="foto-placeholder" style="display:none;">⚖️</div>
+    </div>
+
+    <div class="advogado-info reveal-right">
+      <h3 class="advogado-nome">Dr. Gabriel</h3>
+      <p class="advogado-oab">OAB/SP 536.887 — Advogado Trabalhista</p>
+
+      <p class="advogado-bio">
+        Com mais de 2 anos dedicados exclusivamente ao Direito do Trabalho, o escritório acumula
+        experiência em centenas de casos envolvendo trabalhadores de segurança privada em todo o Brasil.
+        <br><br>
+        O atendimento é próximo, humano e sem jargão jurídico — porque o trabalhador merece entender o que
+        está acontecendo com o seu caso. Atuamos com ética, responsabilidade e transparência em todas as
+        etapas, acreditando que a informação é o primeiro passo para que cada trabalhador possa tomar
+        decisões conscientes sobre seus direitos.
+      </p>
+
+      <div class="advogado-stats">
+        <div class="adv-stat">
+          <span class="adv-stat-num" data-count="2" data-suffix="+">2+</span>
+          <span class="adv-stat-label">anos de atuação</span>
+        </div>
+        <div class="adv-stat">
+          <span class="adv-stat-num" data-count="500" data-suffix="+">500+</span>
+          <span class="adv-stat-label">casos analisados</span>
+        </div>
+        <div class="adv-stat">
+          <span class="adv-stat-num" data-count="100" data-suffix="+">100%</span>
+          <span class="adv-stat-label">foco em direito trabalhista</span>
+        </div>
+      </div>
+
+      <div class="advogado-tags">
+        <span class="adv-tag">Direito do Trabalho</span>
+        <span class="adv-tag">Segurança Privada</span>
+        <span class="adv-tag">Horas Extras</span>
+        <span class="adv-tag">Adicional de Periculosidade</span>
+        <span class="adv-tag">Rescisão Trabalhista</span>
+        <span class="adv-tag">Jornada 12x36</span>
+        <span class="adv-tag">FGTS e Verbas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     CTA PRINCIPAL
+══════════════════════════════════════ -->
+<section id="cta-principal">
+  <div class="cta-box reveal">
+    <div class="cta-glow"></div>
+    <div class="section-tag" style="justify-content: center;">Análise gratuita e sigilosa</div>
+    <h2 class="section-title">Você merece saber se seus direitos<br><em>estão sendo respeitados</em></h2>
+    <p class="section-intro">A consulta é gratuita. A análise é feita pelo Dr. Gabriel, especialista em Direito do Trabalho. Você decide o que fazer com a informação.</p>
+
+    <div class="cta-botoes">
+      <a href="https://wa.me/5511920701830?text=Oi%2C+sou+vigilante+e+quero+analisar+meu+caso+gratuitamente"
+         class="btn btn-gold btn-gold-lg" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Falar agora pelo WhatsApp
+      </a>
+      <a href="#formulario" class="btn btn-outline">Prefiro deixar meus dados ↓</a>
+    </div>
+
+    <div class="cta-selos">
+      <div class="cta-selo"><span class="ico">🔒</span> Sigilo total</div>
+      <div class="cta-selo"><span class="ico">✅</span> Análise gratuita</div>
+      <div class="cta-selo"><span class="ico">⚖️</span> Inscrito na OAB</div>
+      <div class="cta-selo"><span class="ico">📱</span> Atendimento por WhatsApp</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     FORMULÁRIO DE LEAD
+══════════════════════════════════════ -->
+<div id="formulario" class="section-full">
+  <div class="container">
+    <div class="form-wrapper">
+      <div class="form-info reveal-left">
+        <div class="section-tag">Prefere deixar seus dados?</div>
+        <h2 class="section-title">Preencha e o Dr. Gabriel <em>entra em contato</em> com você</h2>
+        <p>Se preferir não ir direto ao WhatsApp, preencha o formulário ao lado. O retorno é feito diretamente pelo Dr. Gabriel, com total discrição.</p>
+
+        <div class="form-beneficios">
+          <div class="form-beneficio">
+            <span class="check">✓</span>
+            <span>Atendimento em até 2 horas úteis</span>
+          </div>
+          <div class="form-beneficio">
+            <span class="check">✓</span>
+            <span>Seus dados nunca serão compartilhados com terceiros</span>
+          </div>
+          <div class="form-beneficio">
+            <span class="check">✓</span>
+            <span>Análise completamente gratuita e sem compromisso</span>
+          </div>
+          <div class="form-beneficio">
+            <span class="check">✓</span>
+            <span>Você fala diretamente com o advogado — sem intermediários</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card reveal-right">
+        <h3>Solicitar análise gratuita</h3>
+        <p class="form-sub">Preencha abaixo — leva menos de 1 minuto.</p>
+
+        <form id="form-lead">
+          <div class="form-group">
+            <label for="nome">Seu nome completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Ex: João da Silva" required autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label for="telefone">WhatsApp / Telefone</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(11) 92070-1830" required autocomplete="tel">
+          </div>
+
+          <div class="form-group">
+            <label for="situacao-form">Sua situação atual</label>
+            <select id="situacao-form" name="situacao">
+              <option value="" disabled selected>Selecione...</option>
+              <option>Ainda estou empregado</option>
+              <option>Fui demitido recentemente</option>
+              <option>Pedi demissão</option>
+              <option>Contrato encerrado há mais de 1 ano</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mensagem">Descreva brevemente sua situação (opcional)</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Ex: Trabalho como vigilante há 3 anos, faço 12x36 e nunca recebi o adicional de periculosidade..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-gold form-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.28 12 19.79 19.79 0 011.22 3.36 2 2 0 013.22 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            Solicitar Análise Gratuita
+          </button>
+          <p class="form-aviso">🔒 Seus dados são protegidos pelo sigilo profissional do advogado.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     FAQ
+══════════════════════════════════════ -->
+<section id="faq">
+  <div class="section-tag reveal">Dúvidas frequentes</div>
+  <h2 class="section-title reveal">O que os vigilantes <em>mais perguntam</em></h2>
+
+  <div class="faq-grid">
+
+    <div class="faq-item reveal">
+      <button class="faq-btn">
+        Preciso pagar algo para ter o caso analisado?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-body">
+        <div class="faq-body-inner">
+          Não. A análise inicial do seu caso é completamente gratuita e sem compromisso. Você conta sua situação, o Dr. Gabriel analisa e orienta. Só depois — e com total transparência — você decide se quer prosseguir com alguma ação jurídica.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-btn">
+        Posso entrar com ação mesmo estando ainda empregado?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-body">
+        <div class="faq-body-inner">
+          Sim. A lei garante ao trabalhador o direito de buscar a Justiça do Trabalho mesmo que ainda esteja empregado. A análise do advogado vai indicar qual o melhor caminho considerando todos os aspectos da sua situação.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-btn">
+        Tenho direito ao adicional de periculosidade mesmo em posto fixo?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-body">
+        <div class="faq-body-inner">
+          Em geral, sim. O critério está relacionado ao uso de arma de fogo e à exposição ao risco inerente à atividade — não apenas ao local de trabalho. Cada caso tem suas particularidades, por isso a análise individual é essencial para entender a sua situação específica.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-btn">
+        Quanto tempo tenho para reclamar meus direitos após a demissão?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-body">
+        <div class="faq-body-inner">
+          A regra geral da CLT é que o trabalhador tem 2 anos após o fim do contrato para ingressar com ação na Justiça do Trabalho. Dentro desse prazo, é possível reivindicar direitos referentes aos últimos 5 anos do contrato. Por isso, não espere muito para buscar orientação.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-btn">
+        A empresa pode me demitir por reclamar meus direitos?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-body">
+        <div class="faq-body-inner">
+          A legislação brasileira proíbe represálias do empregador contra o trabalhador que exercer seus direitos legais. Se isso ocorrer, pode configurar situações que geram direitos adicionais ao trabalhador. O advogado pode orientar como agir em cada caso.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-btn">
+        A jornada 12x36 é legal? Tenho direito a horas extras nessa escala?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-body">
+        <div class="faq-body-inner">
+          A jornada 12x36 é permitida por lei, mas deve ser devidamente formalizada e cumprir todas as exigências legais. Se a empresa descumprir as regras — intervalos, plantões extras não pagos, entre outros — podem surgir direitos ao trabalhador. Cada caso precisa ser avaliado individualmente.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-btn">
+        Preciso de documentos para a análise inicial?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-body">
+        <div class="faq-body-inner">
+          Para a análise inicial, basta contar sua situação. Se quiser compartilhar contracheques, cartão de ponto ou contrato de trabalho, isso ajuda a dar mais precisão. Mas para a primeira conversa, não é obrigatório nenhum documento — o mais importante é entender o que você vivenciou.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     SIGILO E CONFIANÇA
+══════════════════════════════════════ -->
+<div id="sigilo" class="section-full">
+  <div class="container">
+    <div class="section-tag reveal">Por que confiar</div>
+    <h2 class="section-title reveal">Seu caso tratado com <em>sigilo total</em><br>e ética profissional</h2>
+
+    <div class="sigilo-grid">
+      <div class="sigilo-card reveal">
+        <span class="sigilo-ico">🔐</span>
+        <h3>Sigilo absoluto</h3>
+        <p>Todas as informações que você compartilha são protegidas pelo sigilo profissional do advogado — é uma obrigação ética e legal da profissão.</p>
+      </div>
+      <div class="sigilo-card reveal">
+        <span class="sigilo-ico">⚖️</span>
+        <h3>Ética OAB</h3>
+        <p>Atuamos dentro de todas as normas do Código de Ética da OAB. Nenhuma promessa irresponsável — apenas orientação jurídica séria e honesta.</p>
+      </div>
+      <div class="sigilo-card reveal">
+        <span class="sigilo-ico">🤝</span>
+        <h3>Sem pressão</h3>
+        <p>A análise é gratuita e sem compromisso. Você tem total liberdade para decidir o que fazer com as informações recebidas.</p>
+      </div>
+      <div class="sigilo-card reveal">
+        <span class="sigilo-ico">📱</span>
+        <h3>Atendimento humano</h3>
+        <p>Sem robôs, sem scripts prontos. Você fala com quem entende do assunto — de forma clara, respeitosa e acessível.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     CTA FINAL
+══════════════════════════════════════ -->
+<div id="cta-final">
+  <div class="cta-final-inner">
+    <h2 class="cta-final-titulo">NÃO DEIXE SEUS<br>DIREITOS PARA DEPOIS</h2>
+    <p class="cta-final-sub">O prazo para questionar direitos trabalhistas é limitado. Cada dia que passa pode ser um dia a menos para agir. Comece com uma conversa — é gratuita.</p>
+    <a href="https://wa.me/5511920701830?text=Oi%2C+sou+vigilante+e+quero+analisar+meu+caso+gratuitamente"
+       class="btn btn-dark" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Falar com Dr. Gabriel Agora
+    </a>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo-wrap">
+      <p class="footer-logo">DR. GABRIEL</p>
+      <p class="footer-tagline">Advogado Trabalhista — Especialista em Segurança Privada</p>
+      <div class="footer-oab-badge">⚖️ OAB/SP 536.887</div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul class="footer-links">
+        <li><a href="#simulador">Simulador de Direitos</a></li>
+        <li><a href="#erros">Erros das Empresas</a></li>
+        <li><a href="#direitos">Seus Direitos</a></li>
+        <li><a href="#como-funciona">Como Funciona</a></li>
+        <li><a href="#advogado">Sobre o Dr. Gabriel</a></li>
+        <li><a href="#faq">Dúvidas Frequentes</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <div class="footer-contato">
+        <div class="footer-contato-item">
+          <span class="ico">📱</span>
+          <span>WhatsApp: (11) 92070-1830</span>
+        </div>
+        <div class="footer-contato-item">
+          <span class="ico">📧</span>
+          <span>contato@gabrielwilliansadv.com.br</span>
+        </div>
+        <div class="footer-contato-item">
+          <span class="ico">📍</span>
+          <span>São Paulo/SP — Atendimento presencial e remoto em todo o Brasil.</span>
+        </div>
+        <div class="footer-contato-item">
+          <span class="ico">🕐</span>
+          <span>Seg–Sex: 8h às 18h</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Dr. Gabriel — Advogado Trabalhista. OAB/SP 536.887. Todos os direitos reservados.</p>
+    <p style="margin-top: 8px;">
+      Este site tem caráter exclusivamente informativo e não constitui consultoria jurídica.
+      As informações aqui contidas são de natureza geral e cada caso possui suas particularidades.
+      A contratação dos serviços não implica qualquer promessa de resultado.
+      Atuamos em conformidade com o Código de Ética e Disciplina da OAB.
+    </p>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     WHATSAPP FLUTUANTE
+══════════════════════════════════════ -->
+<a id="wpp-float"
+   href="https://wa.me/5511920701830?text=Oi%2C+quero+analisar+meu+caso+gratuitamente"
+   target="_blank"
+   aria-label="Falar pelo WhatsApp">
+  <div class="wpp-tooltip">Análise gratuita!</div>
+  <svg viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script src="vigilante-script.js"></script>
+</body>
+</html>
