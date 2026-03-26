@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salário-Maternidade | Dr. Gabriel Willians – Advocacia Previdenciária</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rosa: #C9506A;
+    --rosa-escuro: #A33A52;
+    --rosa-claro: #F5D6DC;
+    --quase-preto: #1A1118;
+    --creme: #FDF6F0;
+    --dourado: #C8974A;
+    --cinza: #6B6070;
+    --branco: #FFFFFF;
+    --verde: #2E7D52;
+    --wpp: #25D366;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--creme); color: var(--quase-preto); line-height: 1.6; overflow-x: hidden; }
+
+  .top-bar { background: var(--quase-preto); color: var(--rosa-claro); text-align: center; padding: 10px 20px; font-size: 13px; letter-spacing: 0.03em; }
+  .top-bar span { color: var(--dourado); font-weight: 600; }
+
+  .hero { background: var(--quase-preto); color: #fff; padding: 56px 20px 72px; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; top:-80px; right:-100px; width:420px; height:420px; background:radial-gradient(circle,rgba(201,80,106,.22) 0%,transparent 68%); border-radius:50%; pointer-events:none; }
+  .hero::after { content:''; position:absolute; bottom:-50px; left:-80px; width:300px; height:300px; background:radial-gradient(circle,rgba(200,151,74,.13) 0%,transparent 70%); border-radius:50%; pointer-events:none; }
+  .hero-inner { max-width:680px; margin:0 auto; position:relative; z-index:1; }
+  .hero-tag { display:inline-block; background:var(--rosa); color:#fff; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; padding:5px 14px; border-radius:2px; margin-bottom:22px; }
+  .hero h1 { font-family:var(--font-display); font-size:clamp(2rem,6vw,3.2rem); line-height:1.15; font-weight:900; margin-bottom:20px; }
+  .hero h1 em { color:var(--rosa); font-style:italic; }
+  .hero-sub { font-size:clamp(.97rem,3vw,1.1rem); color:rgba(255,255,255,.75); max-width:520px; margin-bottom:34px; font-weight:300; }
+  .hero-cta { display:flex; flex-direction:column; gap:13px; }
+
+  .btn-wpp { display:inline-flex; align-items:center; justify-content:center; gap:11px; background:var(--wpp); color:#fff; padding:18px 28px; border-radius:6px; font-size:1.05rem; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition:background .2s,transform .15s,box-shadow .2s; width:100%; letter-spacing:.01em; box-shadow:0 4px 20px rgba(37,211,102,.35); position:relative; overflow:hidden; }
+  .btn-wpp::before { content:''; position:absolute; top:-50%; left:-60%; width:40%; height:200%; background:rgba(255,255,255,.18); transform:skewX(-20deg); animation:shine 3s infinite; }
+  @keyframes shine { 0%{left:-60%} 100%{left:140%} }
+  .btn-wpp:hover { background:#20b858; transform:translateY(-2px); box-shadow:0 8px 28px rgba(37,211,102,.5); }
+  .btn-wpp svg { width:22px; height:22px; fill:#fff; flex-shrink:0; }
+
+  .btn-secondary { display:inline-flex; align-items:center; justify-content:center; gap:10px; background:transparent; color:rgba(255,255,255,.8); padding:14px 28px; border-radius:6px; font-size:.93rem; font-weight:500; text-decoration:none; border:1px solid rgba(255,255,255,.2); cursor:pointer; transition:border-color .2s,color .2s; width:100%; }
+  .btn-secondary:hover { border-color:var(--rosa-claro); color:#fff; }
+
+  .hero-trust { margin-top:26px; display:flex; align-items:center; gap:10px; font-size:12.5px; color:rgba(255,255,255,.48); }
+  .stars { color:var(--dourado); font-size:14px; letter-spacing:1px; }
+
+  .section { padding:60px 20px; }
+  .section-inner { max-width:680px; margin:0 auto; }
+  .section-label { font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--rosa); margin-bottom:10px; }
+  .section h2 { font-family:var(--font-display); font-size:clamp(1.55rem,5vw,2.2rem); font-weight:700; line-height:1.25; margin-bottom:14px; }
+  .section-desc { color:var(--cinza); font-size:.97rem; margin-bottom:34px; }
+
+  .situations-grid { display:grid; grid-template-columns:1fr; gap:13px; margin-bottom:28px; }
+  .situation-card { background:#fff; border:1px solid #EDE0E5; border-left:4px solid var(--rosa); border-radius:6px; padding:18px 20px; display:flex; align-items:flex-start; gap:14px; transition:box-shadow .2s; }
+  .situation-card:hover { box-shadow:0 4px 20px rgba(201,80,106,.1); }
+  .sit-icon { font-size:1.5rem; flex-shrink:0; margin-top:2px; }
+  .sit-title { font-weight:600; font-size:.94rem; margin-bottom:4px; }
+  .sit-desc { font-size:.87rem; color:var(--cinza); }
+
+  .highlight-box { background:var(--rosa-claro); border-radius:8px; padding:20px 22px; text-align:center; }
+  .highlight-box strong { color:var(--rosa-escuro); font-size:1rem; }
+  .highlight-box p { font-size:.88rem; color:var(--cinza); margin-top:5px; }
+
+  .divider { height:1px; background:linear-gradient(90deg,transparent,#DDD0D5,transparent); margin:0 20px; }
+
+  .quiz-section { background:var(--quase-preto); padding:60px 20px; color:#fff; }
+  .quiz-inner { max-width:640px; margin:0 auto; }
+  .quiz-section .section-label { color:var(--dourado); }
+  .quiz-section h2 { color:#fff; margin-bottom:10px; }
+  .quiz-section .section-desc { color:rgba(255,255,255,.58); }
+  .quiz-progress-bar { height:4px; background:rgba(255,255,255,.1); border-radius:2px; margin-bottom:28px; overflow:hidden; }
+  .quiz-progress-fill { height:100%; background:var(--rosa); border-radius:2px; transition:width .4s ease; }
+  .quiz-step { display:none; }
+  .quiz-step.active { display:block; animation:fadeUp .35s ease; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  .quiz-question { font-family:var(--font-display); font-size:clamp(1.15rem,4vw,1.55rem); font-weight:700; margin-bottom:22px; line-height:1.3; }
+  .quiz-options { display:flex; flex-direction:column; gap:11px; }
+  .quiz-btn { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); color:#fff; padding:15px 20px; border-radius:6px; font-size:.97rem; font-family:var(--font-body); cursor:pointer; text-align:left; transition:background .2s,border-color .2s; display:flex; align-items:center; gap:12px; }
+  .quiz-btn:hover { background:rgba(201,80,106,.22); border-color:var(--rosa); }
+  .q-icon { font-size:1.2rem; }
+  .quiz-result { display:none; text-align:center; padding:10px 0; animation:fadeUp .4s ease; }
+  .quiz-result.active { display:block; }
+  .result-badge { display:inline-block; background:var(--verde); color:#fff; font-size:13px; font-weight:600; letter-spacing:.07em; padding:6px 16px; border-radius:20px; margin-bottom:18px; }
+  .quiz-result h3 { font-family:var(--font-display); font-size:clamp(1.3rem,4vw,1.8rem); margin-bottom:12px; line-height:1.25; }
+  .quiz-result > p { color:rgba(255,255,255,.68); margin-bottom:26px; font-size:.93rem; }
+  .quiz-result .btn-wpp { max-width:380px; margin:0 auto; font-size:1rem; }
+
+  .explanation-section { background:#fff; padding:60px 20px; }
+  .what-is { background:var(--creme); border-radius:10px; padding:26px 22px; margin-bottom:26px; border:1px solid #EDE0E5; }
+  .what-is h3 { font-family:var(--font-display); font-size:1.25rem; margin-bottom:10px; color:var(--rosa-escuro); }
+  .what-is p { font-size:.93rem; color:var(--cinza); line-height:1.78; }
+  .facts-list { list-style:none; display:flex; flex-direction:column; gap:15px; }
+  .facts-list li { display:flex; align-items:flex-start; gap:12px; font-size:.93rem; color:var(--cinza); }
+  .fact-dot { width:22px; height:22px; background:var(--rosa-claro); color:var(--rosa-escuro); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0; margin-top:2px; }
+
+  .objections-section { padding:60px 20px; background:var(--creme); }
+  .objection-cards { display:flex; flex-direction:column; gap:14px; margin-top:30px; }
+  .obj-card { background:#fff; border-radius:8px; padding:20px 22px; border:1px solid #EDE0E5; }
+  .obj-myth { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#B0A0A7; margin-bottom:5px; }
+  .obj-myth-text { font-size:.93rem; font-weight:500; color:var(--cinza); margin-bottom:13px; padding-bottom:13px; border-bottom:1px solid #F0E8EC; text-decoration:line-through; text-decoration-color:var(--rosa); }
+  .obj-truth-label { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--verde); margin-bottom:5px; }
+  .obj-truth-text { font-size:.91rem; color:var(--quase-preto); line-height:1.65; }
+
+  .authority-section { background:var(--quase-preto); color:#fff; padding:60px 20px; }
+  .authority-inner { max-width:680px; margin:0 auto; }
+  .authority-card { display:flex; flex-direction:column; gap:24px; }
+  .authority-photo { width:100px; height:100px; border-radius:50%; object-fit:cover; border:3px solid var(--rosa); flex-shrink:0; }
+  .auth-name { font-family:var(--font-display); font-size:1.45rem; font-weight:700; margin-bottom:4px; }
+  .auth-oab { font-size:12px; color:var(--dourado); letter-spacing:.08em; font-weight:600; text-transform:uppercase; margin-bottom:13px; }
+  .auth-desc { font-size:.92rem; color:rgba(255,255,255,.68); line-height:1.78; }
+  .auth-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:10px; }
+  .auth-stat { text-align:center; background:rgba(255,255,255,.06); border-radius:8px; padding:14px 8px; }
+  .auth-stat-num { font-family:var(--font-display); font-size:1.5rem; font-weight:900; color:var(--rosa); display:block; }
+  .auth-stat-label { font-size:10.5px; color:rgba(255,255,255,.48); margin-top:3px; }
+  .auth-contact { margin-top:20px; display:flex; flex-direction:column; gap:9px; }
+  .auth-contact-item { font-size:.88rem; color:rgba(255,255,255,.55); }
+  .auth-contact-item a { color:rgba(255,255,255,.55); text-decoration:none; }
+
+  .social-proof { background:#fff; padding:60px 20px; }
+  .testimonials { display:flex; flex-direction:column; gap:15px; margin-top:30px; }
+  .testimonial { background:var(--creme); border-radius:8px; padding:20px; border:1px solid #EDE0E5; border-left:4px solid var(--rosa); }
+  .test-quote { font-size:2rem; color:var(--rosa-claro); font-family:serif; line-height:1; margin-bottom:5px; }
+  .test-text { font-size:.91rem; color:var(--cinza); line-height:1.72; margin-bottom:12px; font-style:italic; }
+  .test-author { font-size:12px; font-weight:600; color:var(--quase-preto); text-transform:uppercase; letter-spacing:.06em; }
+  .test-stars { color:var(--dourado); font-size:13px; margin-bottom:8px; }
+  .test-area { font-size:11px; color:var(--cinza); margin-top:3px; }
+  .test-disclaimer { text-align:center; font-size:11px; color:#B0A0A7; margin-top:14px; }
+
+  .urgency-section { background:linear-gradient(135deg,var(--rosa-escuro),#7A2038); color:#fff; padding:48px 20px; text-align:center; }
+  .urgency-icon { font-size:2.5rem; margin-bottom:13px; }
+  .urgency-section h2 { font-family:var(--font-display); font-size:clamp(1.35rem,4.5vw,2rem); font-weight:700; margin-bottom:12px; line-height:1.25; }
+  .urgency-section p { color:rgba(255,255,255,.78); font-size:.93rem; margin-bottom:26px; max-width:480px; margin-left:auto; margin-right:auto; }
+  .urgency-section .btn-wpp { max-width:360px; margin:0 auto; }
+
+  .final-cta { background:var(--creme); padding:64px 20px; text-align:center; }
+  .final-cta h2 { font-family:var(--font-display); font-size:clamp(1.45rem,5vw,2.2rem); margin-bottom:12px; line-height:1.25; }
+  .final-cta p { color:var(--cinza); font-size:.93rem; margin-bottom:30px; max-width:500px; margin-left:auto; margin-right:auto; }
+  .cta-buttons { display:flex; flex-direction:column; gap:12px; max-width:380px; margin:0 auto; }
+  .btn-outline { display:inline-flex; align-items:center; justify-content:center; gap:8px; background:transparent; color:var(--rosa); padding:14px 24px; border-radius:6px; font-size:.93rem; font-weight:600; text-decoration:none; border:2px solid var(--rosa); cursor:pointer; transition:background .2s,color .2s; }
+  .btn-outline:hover { background:var(--rosa); color:#fff; }
+
+  footer { background:#0E0B10; color:rgba(255,255,255,.42); padding:40px 20px; font-size:11.5px; line-height:1.78; }
+  .footer-inner { max-width:680px; margin:0 auto; }
+  .footer-logo { font-family:var(--font-display); font-size:1.1rem; color:rgba(255,255,255,.75); margin-bottom:14px; display:block; }
+  footer p { margin-bottom:9px; }
+  footer a { color:rgba(255,255,255,.42); text-decoration:underline; }
+  .footer-divider { border:none; border-top:1px solid rgba(255,255,255,.07); margin:18px 0; }
+  .legal-disclaimer { background:rgba(255,255,255,.04); border-radius:6px; padding:13px 15px; margin-bottom:12px; font-size:11px; line-height:1.72; color:rgba(255,255,255,.33); }
+
+  /* WPP FLOAT */
+  .wpp-float { position:fixed; bottom:90px; right:18px; z-index:200; background:var(--wpp); color:#fff; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; box-shadow:0 4px 24px rgba(37,211,102,.45); animation:wppPulse 2.5s infinite; transition:transform .2s; }
+  .wpp-float:hover { transform:scale(1.08); }
+  .wpp-float svg { width:28px; height:28px; fill:#fff; }
+  @keyframes wppPulse { 0%,100%{box-shadow:0 4px 24px rgba(37,211,102,.45)} 50%{box-shadow:0 4px 36px rgba(37,211,102,.75)} }
+  .wpp-float::before { content:'Fale agora!'; position:absolute; right:70px; background:var(--quase-preto); color:#fff; font-family:var(--font-body); font-size:12px; font-weight:600; padding:6px 12px; border-radius:4px; white-space:nowrap; opacity:0; transform:translateX(6px); transition:opacity .25s,transform .25s; pointer-events:none; }
+  .wpp-float:hover::before { opacity:1; transform:translateX(0); }
+
+  /* STICKY MOBILE */
+  .sticky-cta { position:fixed; bottom:0; left:0; right:0; background:var(--quase-preto); padding:11px 16px 16px; z-index:150; border-top:1px solid rgba(255,255,255,.08); }
+  .sticky-cta .btn-wpp { font-size:.92rem; padding:14px 18px; }
+
+  .reveal { opacity:0; transform:translateY(22px); transition:opacity .55s ease,transform .55s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  @media (min-width:640px) {
+    .situations-grid { grid-template-columns:1fr 1fr; }
+    .authority-card { flex-direction:row; align-items:flex-start; }
+    .sticky-cta { display:none; }
+    .wpp-float { bottom:28px; }
+    .hero-cta { flex-direction:row; }
+    .hero-cta .btn-wpp,.hero-cta .btn-secondary { width:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  ⚖️ Gabriel Willians Advocacia · OAB/SP &nbsp;·&nbsp; <span>📞 (11) 92070-1830 · Consulta inicial gratuita</span>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Direito Previdenciário · São Paulo</div>
+    <h1>Você pode ter direito ao<br><em>salário-maternidade</em><br>e ainda não sabe</h1>
+    <p class="hero-sub">Milhares de mulheres deixam de receber um benefício que já conquistaram — porque ninguém as informou. Descubra agora se o seu caso se enquadra.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/5511920701830?text=Olá%20Dr.%20Gabriel,%20vim%20pela%20página%20do%20salário-maternidade%20e%20gostaria%20de%20verificar%20meu%20direito." class="btn-wpp" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Verificar meu direito agora — grátis
+      </a>
+      <a href="#quiz" class="btn-secondary">📋 Fazer simulação rápida</a>
+    </div>
+    <div class="hero-trust"><span class="stars">★★★★★</span> Mais de 300 clientes atendidos em todo o Brasil</div>
+  </div>
+</section>
+
+<section class="section reveal" id="situacoes">
+  <div class="section-inner">
+    <div class="section-label">Você se identifica?</div>
+    <h2>Você está em uma<br>dessas situações?</h2>
+    <p class="section-desc">Mesmo que você acredite que não tem direito, a realidade pode ser diferente. Veja os casos mais comuns:</p>
+    <div class="situations-grid">
+      <div class="situation-card"><div class="sit-icon">👩‍💼</div><div><div class="sit-title">Trabalhei sem carteira assinada</div><div class="sit-desc">Trabalho informal também pode gerar direito ao benefício em muitas situações.</div></div></div>
+      <div class="situation-card"><div class="sit-icon">🏪</div><div><div class="sit-title">Sou MEI ou autônoma</div><div class="sit-desc">Contribuintes individuais e MEIs têm regras específicas — e muitas vezes direito garantido.</div></div></div>
+      <div class="situation-card"><div class="sit-icon">🤰</div><div><div class="sit-title">Fui demitida durante a gravidez</div><div class="sit-desc">A demissão na gestação não extingue automaticamente o direito ao benefício.</div></div></div>
+      <div class="situation-card"><div class="sit-icon">🌾</div><div><div class="sit-title">Sou trabalhadora rural</div><div class="sit-desc">A legislação prevê condições especiais para trabalhadoras do campo.</div></div></div>
+      <div class="situation-card"><div class="sit-icon">🔄</div><div><div class="sit-title">O INSS negou meu pedido</div><div class="sit-desc">Uma negativa administrativa não é o fim. Na maioria dos casos, é possível recorrer.</div></div></div>
+      <div class="situation-card"><div class="sit-icon">📅</div><div><div class="sit-title">Tive filho nos últimos 5 anos</div><div class="sit-desc">O prazo de prescrição pode ainda estar aberto. Vale a pena verificar.</div></div></div>
+      <div class="situation-card" style="border-left-color:var(--verde);"><div class="sit-icon">💡</div><div><div class="sit-title">Nunca contribuiu? Basta uma única contribuição para ter direito</div><div class="sit-desc">Muitas pessoas se enquadram nessa situação.</div></div></div>
+    </div>
+    <div class="highlight-box"><strong>⚠️ Importante: o direito pode prescrever com o tempo</strong><p>Existe um prazo legal para requerimento do benefício. Quanto antes você verificar sua situação, mais segura estará.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="quiz-section" id="quiz">
+  <div class="quiz-inner">
+    <div class="section-label">Simulação gratuita</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(1.55rem,5vw,2.2rem);font-weight:700;line-height:1.25;color:#fff;margin-bottom:10px;">Responda 5 perguntas<br>e descubra agora</h2>
+    <p class="section-desc">Sem compromisso. Sem julgamento. Em menos de 1 minuto.</p>
+    <div style="margin-top:30px;">
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="quiz-step active" data-step="1">
+        <div class="quiz-question">Você deu à luz, adotou ou perdeu um bebê nos últimos 5 anos?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="nextStep(1,'yes')"><span class="q-icon">✅</span> Sim</button>
+          <button class="quiz-btn" onclick="nextStep(1,'no')"><span class="q-icon">❌</span> Não</button>
+        </div>
+      </div>
+      <div class="quiz-step" data-step="2">
+        <div class="quiz-question">Na época do nascimento, você trabalhava ou contribuía de alguma forma?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="nextStep(2,'yes', 'Sim, tinha renda ou trabalho')"><span class="q-icon">✅</span> Sim, tinha alguma renda ou trabalho</button>
+          <button class="quiz-btn" onclick="nextStep(2,'no', 'Não tinha certeza / Trabalhava informal')"><span class="q-icon">❓</span> Não tenho certeza / Trabalhava informal</button>
+          <button class="quiz-btn" onclick="nextStep(2,'no', 'Não trabalhava')"><span class="q-icon">❌</span> Não trabalhava</button>
+        </div>
+      </div>
+      <div class="quiz-step" data-step="3">
+        <div class="quiz-question">O INSS negou seu pedido ou você nunca chegou a pedir?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="nextStep(3,'denied')"><span class="q-icon">🚫</span> O INSS negou meu pedido</button>
+          <button class="quiz-btn" onclick="nextStep(3,'never')"><span class="q-icon">🤷</span> Nunca pedi — não sabia que tinha direito</button>
+          <button class="quiz-btn" onclick="nextStep(3,'received')"><span class="q-icon">✅</span> Já recebi o benefício</button>
+        </div>
+      </div>
+      <div class="quiz-step" data-step="4">
+        <div class="quiz-question">Qual era sua situação de trabalho quando engravidou?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="nextStep(4,'CLT', 'CLT (carteira assinada)')"><span class="q-icon">📝</span> CLT (carteira assinada)</button>
+          <button class="quiz-btn" onclick="nextStep(4,'MEI', 'MEI / autônoma / conta própria')"><span class="q-icon">🏪</span> MEI / autônoma / conta própria</button>
+          <button class="quiz-btn" onclick="nextStep(4,'rural', 'Trabalhadora rural / doméstica')"><span class="q-icon">👩‍🌾</span> Trabalhadora rural / doméstica</button>
+          <button class="quiz-btn" onclick="nextStep(4,'informal', 'Desempregada / informal')"><span class="q-icon">🔄</span> Desempregada / informal</button>
+        </div>
+      </div>
+      <div class="quiz-step" data-step="5">
+        <div class="quiz-question">Você mora ou morou em zona rural nos últimos anos?</div>
+        <div class="quiz-options">
+          <button class="quiz-btn" onclick="nextStep(5,'yes')"><span class="q-icon">✅</span> Sim</button>
+          <button class="quiz-btn" onclick="nextStep(5,'no')"><span class="q-icon">🏙️</span> Não, sempre morei na cidade</button>
+        </div>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <div class="result-badge">✅ Análise concluída</div>
+        <h3>Seu caso merece uma análise com o Dr. Gabriel</h3>
+        <p>Com base nas suas respostas, identificamos elementos que podem indicar direito ao salário-maternidade. A avaliação é gratuita e feita por especialista.</p>
+        <a href="https://wa.me/5511920701830?text=Olá%20Dr.%20Gabriel,%20fiz%20a%20simulação%20na%20página%20e%20gostaria%20de%20uma%20análise%20do%20meu%20caso%20de%20salário-maternidade." class="btn-wpp" target="_blank" style="max-width:380px;margin:0 auto;">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Falar com Dr. Gabriel no WhatsApp
+        </a>
+        <p style="font-size:11.5px;color:rgba(255,255,255,.38);margin-top:16px;margin-bottom:0;">* Esta simulação é informativa e não representa opinião jurídica. Somente a análise individual pode confirmar o direito.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="explanation-section reveal" id="oque-e">
+  <div class="section-inner">
+    <div class="section-label">Entenda o benefício</div>
+    <h2>O que é o<br>salário-maternidade?</h2>
+    <p class="section-desc">Em linguagem simples, sem juridiquês.</p>
+    <div class="what-is">
+      <h3>Uma proteção que a lei garante à mãe</h3>
+      <p>O salário-maternidade é um benefício pago pelo INSS à mulher que acabou de ter filho — seja por parto, adoção ou guarda judicial. Ele existe para garantir que a mãe possa se dedicar ao bebê sem perder renda no período mais crítico.</p>
+    </div>
+    <ul class="facts-list">
+      <li><div class="fact-dot">1</div><span><strong>Quem pode ter direito:</strong> empregadas CLT, trabalhadoras rurais, domésticas, autônomas, MEIs — cada situação tem suas próprias regras.</span></li>
+      <li><div class="fact-dot">2</div><span><strong>Quanto tempo dura:</strong> em geral, 120 dias (4 meses) a partir do parto. Em adoção, o prazo pode variar conforme a idade da criança.</span></li>
+      <li><div class="fact-dot">3</div><span><strong>Valor do benefício:</strong> calculado com base na renda e na categoria da trabalhadora. Pode representar uma quantia significativa que a mãe tem direito de receber.</span></li>
+      <li><div class="fact-dot">4</div><span><strong>Prazo para pedir:</strong> existe um limite de tempo. Casos de 2020 em diante podem ainda estar dentro do prazo — por isso é urgente verificar.</span></li>
+      <li><div class="fact-dot" style="background:var(--verde);color:#fff;">★</div><span><strong>Com 1 contribuição ou sem contribuição:</strong> a trabalhadora rural (segurada especial) pode ter direito sem nenhuma contribuição mensal. Já MEIs e autônomas, com apenas 1 contribuição recolhida antes do parto, podem se qualificar. Nunca descarte seu caso sem análise.</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="objections-section reveal">
+  <div class="section-inner">
+    <div class="section-label">Dúvidas frequentes</div>
+    <h2>"Mas eu achava que<br>não tinha direito porque…"</h2>
+    <div class="objection-cards">
+      <div class="obj-card"><div class="obj-myth">Mito</div><div class="obj-myth-text">"Trabalhei sem carteira, então não tenho direito."</div><div class="obj-truth-label">Realidade</div><div class="obj-truth-text">A ausência de carteira assinada não impede automaticamente o direito. A legislação prevê categorias específicas para trabalhadoras informais e rurais, com condições próprias de acesso.</div></div>
+      <div class="obj-card"><div class="obj-myth">Mito</div><div class="obj-myth-text">"O INSS negou, então está encerrado."</div><div class="obj-truth-label">Realidade</div><div class="obj-truth-text">Uma negativa administrativa não é decisão final. Em muitos casos, com documentação e estratégia corretas, é possível reverter a decisão na esfera judicial ou administrativa.</div></div>
+      <div class="obj-card"><div class="obj-myth">Mito</div><div class="obj-myth-text">"Nunca contribuí para o INSS, não tenho nada a receber."</div><div class="obj-truth-label">Realidade</div><div class="obj-truth-text">Trabalhadoras rurais, por exemplo, não precisam de contribuições mensais. A análise do histórico completo pode revelar possibilidades que não são óbvias à primeira vista.</div></div>
+      <div class="obj-card"><div class="obj-myth">Mito</div><div class="obj-myth-text">"Fui demitida antes do parto, perdi tudo."</div><div class="obj-truth-label">Realidade</div><div class="obj-truth-text">A demissão durante a gestação é um tema juridicamente delicado. Dependendo das circunstâncias, o direito ao salário-maternidade pode se manter mesmo após a rescisão do contrato.</div></div>
+      <div class="obj-card" style="border-left:4px solid var(--verde);"><div class="obj-myth" style="color:var(--verde);">⭐ Pouco conhecido</div><div class="obj-myth-text">"Preciso de anos de contribuição para ter direito."</div><div class="obj-truth-label">Realidade</div><div class="obj-truth-text"><strong>Com apenas 1 contribuição ao INSS</strong> — ou até mesmo sem nenhuma contribuição formal — a gestante pode ter direito ao salário-maternidade. Trabalhadoras rurais (seguradas especiais) não precisam de contribuições mensais; basta comprovar o trabalho no campo. MEIs e autônomas podem ter acesso com carência mínima. Nunca desista sem antes consultar um especialista.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="authority-section reveal">
+  <div class="authority-inner">
+    <div class="section-label" style="color:var(--dourado);">Quem vai cuidar do seu caso</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(1.55rem,5vw,2.2rem);font-weight:700;color:#fff;margin-bottom:30px;line-height:1.25;">Um especialista ao seu lado<br>em cada etapa</h2>
+    <div class="authority-card">
+      <img src="https://gabrielwilliansadv.com.br/dr_gabriel009.png" alt="Dr. Gabriel Willians – Advogado Previdenciário SP" class="authority-photo" onerror="this.style.display='none'">
+      <div>
+        <div class="auth-name">Dr. Gabriel Willians</div>
+        <div class="auth-oab">OAB/SP Regularmente Inscrito · Direito Previdenciário</div>
+        <div class="auth-desc">Formado pela Universidade Cidade de São Paulo, o Dr. Gabriel Willians construiu sua trajetória com foco em excelência técnica e atendimento humanizado. Atua em Direito Previdenciário, Trabalhista, Civil, Digital e outras áreas — sempre com estratégia clara e foco no que realmente importa para o cliente.<br><br>Cada caso é tratado de forma única, com análise individualizada e comunicação direta. O atendimento é 100% online, de qualquer lugar do Brasil, sem necessidade de deslocamento.</div>
+        <div class="auth-stats">
+          <div class="auth-stat"><span class="auth-stat-num">300+</span><div class="auth-stat-label">clientes atendidos</div></div>
+          <div class="auth-stat"><span class="auth-stat-num">100+</span><div class="auth-stat-label">casos resolvidos</div></div>
+          <div class="auth-stat"><span class="auth-stat-num">6</span><div class="auth-stat-label">áreas de atuação</div></div>
+        </div>
+        <div class="auth-contact">
+          <div class="auth-contact-item">📍 São Paulo – SP · Atendimento presencial e online em todo o Brasil</div>
+          <div class="auth-contact-item">📞 <a href="https://wa.me/5511920701830">(11) 92070-1830</a> &nbsp;·&nbsp; Seg–Sex, 8h–18h</div>
+          <div class="auth-contact-item">✉️ <a href="/cdn-cgi/l/email-protection#066569687267726946616764746f636a716f6a6a6f6768756762702865696b286474"><span class="__cf_email__" data-cfemail="0a6965647e6b7e654a6d6b6878636f667d636666636b64796b6e7c24696567246878">[email&#160;protected]</span></a></div>
+          <div class="auth-contact-item">🌐 <a href="https://gabrielwilliansadv.com.br" target="_blank">gabrielwilliansadv.com.br</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="social-proof reveal">
+  <div class="section-inner">
+    <div class="section-label">Relatos de clientes</div>
+    <h2>O que dizem quem<br>passou por aqui</h2>
+    <p class="section-desc">Histórias reais, preservando a privacidade de cada família.</p>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"</div>
+        <div class="test-text">O Dr. Gabriel me ajudou a recuperar meu benefício do INSS que havia sido negado. Atendimento rápido, humano e muito eficiente. Recomendo demais!</div>
+        <div class="test-author">Maria S.</div>
+        <div class="test-area">Direito Previdenciário · São Paulo</div>
+      </div>
+      <div class="testimonial">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"</div>
+        <div class="test-text">Trabalhei anos sem carteira e achei que não tinha direito a nada. Depois de conversar com o Dr. Gabriel, entendi minha situação de verdade. Atendimento honesto e sem enrolação.</div>
+        <div class="test-author">C. F.</div>
+        <div class="test-area">Salário-Maternidade · Interior de SP</div>
+      </div>
+      <div class="testimonial">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"</div>
+        <div class="test-text">Tive um problema sério com juros abusivos e o Dr. Gabriel resolveu tudo online, sem precisar sair de casa. Excelente atendimento, me senti respeitada durante todo o processo.</div>
+        <div class="test-author">Claudia F.</div>
+        <div class="test-area">Direito Bancário · São Paulo</div>
+      </div>
+    </div>
+    <p class="test-disclaimer">* Depoimentos com nomes preservados para proteção da privacidade. Resultados podem variar conforme cada caso.</p>
+  </div>
+</section>
+
+<section class="urgency-section reveal">
+  <div class="urgency-icon">⏳</div>
+  <h2>O tempo corre contra você.<br>O benefício prescreve.</h2>
+  <p>A lei estabelece um prazo máximo para requerer o salário-maternidade retroativamente. Não espere mais para descobrir se ainda está a tempo.</p>
+  <a href="https://wa.me/5511920701830?text=Olá%20Dr.%20Gabriel,%20vi%20sobre%20a%20prescrição%20do%20salário-maternidade%20e%20quero%20verificar%20meu%20caso%20com%20urgência." class="btn-wpp" target="_blank" style="max-width:360px;margin:0 auto;">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    ⏱️ Verificar antes que prescreva
+  </a>
+</section>
+
+<section class="final-cta reveal">
+  <div class="section-inner">
+    <div class="section-label" style="color:var(--rosa);">Próximo passo</div>
+    <h2>A consulta é gratuita.<br>O conhecimento, imediato.</h2>
+    <p>Atendemos por WhatsApp de todo o Brasil. Sem compromisso, sem custo inicial. Só uma conversa honesta sobre os seus direitos com o Dr. Gabriel.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/5511920701830?text=Olá%20Dr.%20Gabriel,%20gostaria%20de%20verificar%20meu%20direito%20ao%20salário-maternidade." class="btn-wpp" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        💬 Falar com Dr. Gabriel no WhatsApp
+      </a>
+      <a href="#quiz" class="btn-outline">📋 Refazer a simulação</a>
+    </div>
+    <p style="font-size:12px;color:var(--cinza);margin-top:18px;">🔒 Sigilo absoluto. Seus dados são tratados conforme o Código de Ética da OAB e a LGPD.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo">⚖️ Gabriel Willians Advocacia</span>
+    <p>OAB/SP – Advogado regularmente inscrito</p>
+    <p>São Paulo – SP, Brasil · Atendimento presencial e online em todo o Brasil</p>
+    <p>📞 <a href="https://wa.me/5511920701830">(11) 92070-1830</a> &nbsp;·&nbsp; ✉️ <a href="/cdn-cgi/l/email-protection#0e6d61607a6f7a614e696f6c7c676b6279676262676f607d6f6a78206d6163206c7c"><span class="__cf_email__" data-cfemail="63000c0d1702170c23040201110a060f140a0f0f0a020d100207154d000c0e4d0111">[email&#160;protected]</span></a></p>
+    <p>🌐 <a href="https://gabrielwilliansadv.com.br" target="_blank">gabrielwilliansadv.com.br</a></p>
+    <hr class="footer-divider">
+    <div class="legal-disclaimer"><strong style="color:rgba(255,255,255,.48);">AVISO LEGAL:</strong> Este site tem caráter exclusivamente informativo e não constitui aconselhamento jurídico. As informações aqui contidas são gerais e podem não se aplicar à sua situação específica. A análise de cada caso deve ser realizada individualmente por profissional habilitado. Resultados anteriores não garantem resultados futuros. Este escritório atua em conformidade com o Código de Ética e Disciplina da OAB e com as normas que regulamentam a publicidade na advocacia, sendo vedadas a captação irregular de clientela, a garantia de resultados e a publicidade enganosa ou mercantilista.</div>
+    <div class="legal-disclaimer"><strong style="color:rgba(255,255,255,.48);">PRIVACIDADE:</strong> Os dados fornecidos por meio deste site são tratados em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018) e utilizados exclusivamente para contato jurídico. Não compartilhamos informações com terceiros sem consentimento expresso. Sigilo absoluto garantido.</div>
+    <p>Os depoimentos apresentados preservam a privacidade dos clientes. Nenhuma informação neste site representa promessa ou garantia de resultado.</p>
+    <hr class="footer-divider">
+    <p style="font-size:10.5px;">© 2026 Gabriel Willians Advocacia. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE -->
+<div class="sticky-cta">
+  <a href="https://wa.me/5511920701830?text=Olá%20Dr.%20Gabriel,%20gostaria%20de%20verificar%20meu%20direito%20ao%20salário-maternidade." class="btn-wpp" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    💬 Verificar meu direito agora — grátis
+  </a>
+</div>
+
+<!-- WPP FLUTUANTE -->
+<a href="https://wa.me/5511920701830?text=Olá%20Dr.%20Gabriel,%20gostaria%20de%20verificar%20meu%20direito%20ao%20salário-maternidade." class="wpp-float" target="_blank" aria-label="Falar no WhatsApp com Dr. Gabriel Willians">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const totalSteps = 5;
+  const quizAnswers = {};
+  const stepQuestions = {
+    1: 'Teve filho nos últimos 5 anos',
+    2: 'Trabalhava na época',
+    3: 'Situação com o INSS',
+    4: 'Vínculo de trabalho',
+    5: 'Zona rural'
+  };
+  const answerLabels = {
+    1: { yes: 'Sim', no: 'Não' },
+    3: { denied: 'INSS negou o pedido', never: 'Nunca chegou a pedir', received: 'Já recebeu o benefício' },
+    5: { yes: 'Sim, mora ou morou em zona rural', no: 'Não, sempre morou na cidade' }
+  };
+  function nextStep(step, answer, labelOverride) {
+    quizAnswers[step] = labelOverride || (answerLabels[step] && answerLabels[step][answer]) || answer;
+    if (step === 3 && answer === 'received') {
+      document.querySelector(`[data-step="${step}"]`).classList.remove('active');
+      showResult(true); return;
+    }
+    const next = step + 1;
+    document.querySelector(`[data-step="${step}"]`).classList.remove('active');
+    if (next > totalSteps) { showResult(); }
+    else { document.querySelector(`[data-step="${next}"]`).classList.add('active'); }
+    document.getElementById('progressFill').style.width = (step / totalSteps * 100) + '%';
+  }
+  function buildWppMessage() {
+    let msg = 'Olá Dr. Gabriel, fiz a simulação na página e gostaria de uma análise do meu caso.\n\n📋 Minhas respostas:\n';
+    for (const [step, label] of Object.entries(stepQuestions)) {
+      const ans = quizAnswers[step];
+      if (ans) msg += '• ' + label + ': ' + ans + '\n';
+    }
+    return encodeURIComponent(msg);
+  }
+  function showResult(already) {
+    document.getElementById('progressFill').style.width = '100%';
+    const r = document.getElementById('quizResult');
+    if (already) {
+      r.querySelector('h3').textContent = 'Que ótimo que você já recebeu!';
+      r.querySelector('p').textContent = 'Se tiver qualquer dúvida sobre o valor ou prazo, o Dr. Gabriel pode esclarecer gratuitamente.';
+    }
+    const wppLink = r.querySelector('a.btn-wpp');
+    if (wppLink) wppLink.href = 'https://wa.me/5511920701830?text=' + buildWppMessage();
+    r.classList.add('active');
+    r.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
